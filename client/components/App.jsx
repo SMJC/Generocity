@@ -20,7 +20,7 @@ class App extends Component {
           itemCategory: 'sporting equipment',
           itemAddress: '94087',
           itemUserId: 'Reid',
-          itemStatus: 'false',
+          itemStatus: false,
         },
         {
           itemTitle: 'vase',
@@ -28,39 +28,7 @@ class App extends Component {
           itemCategory: 'ornament',
           itemAddress: '91054',
           itemUserId: 'Dave',
-          itemStatus: 'true',
-        },
-        {
-          itemTitle: 'basketball',
-          itemDescription: 'an orange ball',
-          itemCategory: 'sporting equipment',
-          itemAddress: '94087',
-          itemUserId: 'Reid',
-          itemStatus: 'false',
-        },
-        {
-          itemTitle: 'vase',
-          itemDescription: 'an old vase',
-          itemCategory: 'ornament',
-          itemAddress: '91054',
-          itemUserId: 'Dave',
-          itemStatus: 'true',
-        },
-        {
-          itemTitle: 'basketball',
-          itemDescription: 'an orange ball',
-          itemCategory: 'sporting equipment',
-          itemAddress: '94087',
-          itemUserId: 'Reid',
-          itemStatus: 'false',
-        },
-        {
-          itemTitle: 'vase',
-          itemDescription: 'an old vase',
-          itemCategory: 'ornament',
-          itemAddress: '91054',
-          itemUserId: 'Dave',
-          itemStatus: 'true',
+          itemStatus: true,
         },
       ], // (each item is an object)
       isloggedIn: false,
@@ -84,13 +52,13 @@ class App extends Component {
     return (
       <div className="backgroundColor" style={{ backgroundColor: '#FDFDFD' }}>
         <nav class="navbar navbar-expand-md navbar-light" style={{ backgroundColor: '#e4f3fe' }}>
-          <NavLink to="/" class="nav-brand">
-            <a class="navbar-brand" href="#">
+          <NavLink to="/" className="nav-brand">
+            <a className="navbar-brand" href="#">
               generocity
             </a>
           </NavLink>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -98,25 +66,25 @@ class App extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <NavLink to="/" class="nav-link">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <NavLink to="/" className="nav-link">
                   Home
                 </NavLink>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 {/* <a class="nav-link" href="#">Link</a> */}
-                <NavLink to="/profile" class="nav-link">
+                <NavLink to="/profile" className="nav-link">
                   Profile
                 </NavLink>
               </li>
-              <li class="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle"
                   href="#"
                   id="navbarDropdown"
                   role="button"
@@ -126,27 +94,27 @@ class App extends Component {
                 >
                   Dropdown
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href="#">
                     Action
                   </a>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Another action
                   </a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">
+                  <div className="dropdown-divider"></div>
+                  <a className="dropdown-item" href="#">
                     Something else here
                   </a>
                 </div>
               </li>
             </ul>
-            <ul class="navbar-nav">
-              <li class="nav-item">
+            <ul className="navbar-nav">
+              <li className="nav-item">
                 <NavLink to="/login" className="nav-link" style={{ marginRight: '10px' }}>
                   Login
                 </NavLink>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <NavLink to="/signup" className="nav-link">
                   Sign Up
                 </NavLink>
