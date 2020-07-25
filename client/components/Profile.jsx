@@ -1,31 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ItemCard from './ItemCard.jsx';
-import '../styles/Home.css'; // would each page have different css?
+import '../styles/application.scss'; // would each page have different css?
 
 class Profile extends Component {
   constructor(props) {
     super(props);
   }
-  // display user items
-  // add logic/functionality to delete items
-  //
 
   render() {
-    const { userItems } = this.props;
-    const cards = userItems.map((item) => {
+    const { allItems, userEmail, userZip } = this.props;
+    // query by userId
+
+    const cards = allItems.map((item) => {
       return (
         <ItemCard
-          name={item.name}
-          // other props here
+          name={item.itemTitle}
+          userid={item.itemUserId}
+          location={item.itemAddress}
+          status={item.itemStatus}
         />
       );
     });
 
-    return <section className="itemsContainer">{cards}</section>;
+    return (
+      <>
+        {/* <section className="userProfile">
+          <p>
+            User Email: {userEmail} User Location: {userZip}
+          </p>
+        </section> */}
+        <section className="cardsContainer">{cards}</section>
+      </>
+    );
   }
-  // render() {
-  //   return <div>HI FROM PROFILE!</div>;
-  // }
 }
 
 export default Profile;

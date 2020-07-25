@@ -1,7 +1,8 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import ItemCard from './ItemCard.jsx';
 import AddItem from './AddItem';
-import '../styles/Home.css';
+import '../styles/application.scss';
 
 class Home extends Component {
   constructor(props) {
@@ -13,10 +14,14 @@ class Home extends Component {
     // define *map method to transform allItems into char cards
     const cards = allItems.map((item) => {
       return (
-        <ItemCard
-          name={item.name}
-          // other props here
-        />
+        <div className="cardContainer">
+          <ItemCard
+            name={item.itemTitle}
+            userid={item.itemUserId}
+            location={item.itemAddress}
+            status={item.itemStatus}
+          />
+        </div>
       );
     });
 

@@ -14,25 +14,60 @@ class App extends Component {
     this.state = {
       // store most state in App component, make available to child components as props
       allItems: [
-        { name: 'basketball' },
-        { name: 'trampoline' },
-        { name: 'mirror' },
-        { name: 'gatorade' },
-        { name: 'dress' },
+        {
+          itemTitle: 'basketball',
+          itemDescription: 'an orange ball',
+          itemCategory: 'sporting equipment',
+          itemAddress: '94087',
+          itemUserId: 'Reid',
+          itemStatus: 'false',
+        },
+        {
+          itemTitle: 'vase',
+          itemDescription: 'an old vase',
+          itemCategory: 'ornament',
+          itemAddress: '91054',
+          itemUserId: 'Dave',
+          itemStatus: 'true',
+        },
+        {
+          itemTitle: 'basketball',
+          itemDescription: 'an orange ball',
+          itemCategory: 'sporting equipment',
+          itemAddress: '94087',
+          itemUserId: 'Reid',
+          itemStatus: 'false',
+        },
+        {
+          itemTitle: 'vase',
+          itemDescription: 'an old vase',
+          itemCategory: 'ornament',
+          itemAddress: '91054',
+          itemUserId: 'Dave',
+          itemStatus: 'true',
+        },
+        {
+          itemTitle: 'basketball',
+          itemDescription: 'an orange ball',
+          itemCategory: 'sporting equipment',
+          itemAddress: '94087',
+          itemUserId: 'Reid',
+          itemStatus: 'false',
+        },
+        {
+          itemTitle: 'vase',
+          itemDescription: 'an old vase',
+          itemCategory: 'ornament',
+          itemAddress: '91054',
+          itemUserId: 'Dave',
+          itemStatus: 'true',
+        },
       ], // (each item is an object)
       isloggedIn: false,
-      username: '', // username and password state values will be updated 'onChange' as the user types into the input fields
+      userEmail: 'email@email.com',
       password: '',
-      userLocation: '',
-      userItems: [
-        { name: 'baseball' },
-        { name: 'beanbag' },
-        { name: 'dresser' },
-        { name: 'fanta' },
-        { name: 'suspenders' },
-      ], // store items in this array after fetching from API, then pass to Profile component as props  (each item is an object)
-      userEmail: '',
-      userPoints: 0,
+      userZip: '94087',
+      //userPoints: 0,
     };
   }
 
@@ -124,7 +159,15 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={(props) => <Home {...props} allItems={this.state.allItems} />}
+            render={(props) => (
+              <Home
+                {...props}
+                allItems={this.state.allItems}
+                userItems={this.state.userItems}
+                userEmail={this.state.userEmail}
+                userLocation={this.state.userLocation}
+              />
+            )}
           />
           <Route
             exact
@@ -156,7 +199,14 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={(props) => <Profile {...props} userItems={this.state.userItems} />}
+            render={(props) => (
+              <Profile
+                {...props}
+                allItems={this.state.allItems}
+                userEmail={this.state.userEmail}
+                userLocation={this.state.userZip}
+              />
+            )}
           />
         </Switch>
       </div>
