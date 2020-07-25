@@ -16,7 +16,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(scss)$/,
+        test: /\.css$/,
         use: [
           {
             loader: 'style-loader', // inject CSS to page
@@ -29,7 +29,7 @@ module.exports = {
             options: {
               plugins() {
                 // postcss plugins, can be exported to postcss.config.js
-                return [require('autoprefixer')];
+                return [require('precss'), require('autoprefixer')];
               },
             },
           },

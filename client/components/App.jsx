@@ -1,37 +1,165 @@
-import React from 'react';
-// import react router, switch, links, etc
-// import react useState and useEffect
-// import various components
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import SignUp from './SignUp.jsx';
+import Login from './Login.jsx';
+import Home from './Home.jsx';
+import Profile from './Profile.jsx';
+import AddItem from './AddItem.jsx';
+import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-// create stateful App component to include:
-/*
-loggedIn: false,
-      username: '',
-      userLocation:,
-      userItems: [], // store cards in this array after fetching from API
-      userEmail:,
-      */
-// React hooks equivalent of component did mount
-// Similar to componentDidMount and componentDidUpdate:
-// useEffect(() => {
-// fetch request
-// set items with new state
-// catch error
-// });
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // store most state in App component, make available to child components as props
+      allItems: [
+        { name: 'basketball' },
+        { name: 'trampoline' },
+        { name: 'mirror' },
+        { name: 'gatorade' },
+        { name: 'dress' },
+      ], // (each item is an object)
+      isloggedIn: false,
+      username: '', // username and password state values will be updated 'onChange' as the user types into the input fields
+      password: '',
+      userLocation: '',
+      userItems: [
+        { name: 'baseball' },
+        { name: 'beanbag' },
+        { name: 'dresser' },
+        { name: 'fanta' },
+        { name: 'suspenders' },
+      ], // store items in this array after fetching from API, then pass to Profile component as props  (each item is an object)
+      userEmail: '',
+      userPoints: 0,
+    };
+  }
 
-// render
-// if loggedIn is false, the error message
-// else add items into state by mapping with query for location
+  /*----------------To Do-------------------*/
 
-// return nav with link to and react router components:
-// home
-// user
-// create item
-// logout (set the state)
-// login (set the state)
+  // define method to fetch user data from DB
+  // define method to fetch all items from DB (for MVP, maybe items from any region will display until user logs in w location info)
+  // define method to handle user input (for login and sign up)
+  // define method to handle login submit
+  // define method to handle sign up submit
+  // bind these methods to constructor, pass them down to children
 
-const App = () => {
-  return <div />;
-};
+  render() {
+    return (
+      <div>
+        <nav class="navbar navbar-expand-md navbar-light" style={{ backgroundColor: '#e3f2fd' }}>
+          <a class="navbar-brand" href="#">
+            generocity
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-export default App;
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                {/* <a class="nav-link" href="#">Link</a> */}
+                <NavLink to="/" class="nav-link">
+                  Home
+                </NavLink>
+              </li>
+              <li class="nav-item">
+                {/* <a class="nav-link" href="#">Link</a> */}
+                <NavLink to="/profile" class="nav-link">
+                  Profile
+                </NavLink>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <NavLink to="/login" className="nav-link" style={{ marginRight: '10px' }}>
+                  Login
+                </NavLink>
+              </li>
+              <li class="nav-item">
+                <NavLink to="/login" className="nav-link">
+                  Sign Up
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={(props) => <Home {...props} allItems={this.state.allItems} />}
+          />
+          <Route
+            exact
+            path="/additem"
+            render={(props) => (
+              <AddItem
+                {...props} // add props here
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/login"
+            render={(props) => (
+              <Login
+                {...props} // add props here
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={(props) => (
+              <SignUp
+                {...props} // add props here
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/profile"
+            render={(props) => <Profile {...props} userItems={this.state.userItems} />}
+          />
+        </Switch>
+      </div>
+    );
+  }
+}
+export default withRouter(App);
