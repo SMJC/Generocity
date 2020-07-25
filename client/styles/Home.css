@@ -1,0 +1,19 @@
+html {
+  padding: none;
+  margin: none;
+}
+/* items grid container */
+.itemsContainer {
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 25fr 25fr 25fr 25fr; /*can add a media query for smaller screens/responsivity*/  
+}
+
+/* individual item card container */
+.itemCard {
+  /* display: flex;
+  flex-direction: row; */
+  justify-content: flex-start;
+  margin: 0.5rem;
+  max-width: 300px;
+}

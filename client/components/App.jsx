@@ -11,13 +11,13 @@ import { withRouter } from 'react-router'
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      allItems: [],      // store most state in App component, make available to child components as props
+    this.state = { // store most state in App component, make available to child components as props
+      allItems: [{name: 'basketball'}, {name: 'trampoline'}, {name: 'mirror'}, {name: 'gatorade'}, {name: 'dress'}], // (each item is an object) 
       isloggedIn: false,
       username: '', // username and password state values will be updated 'onChange' as the user types into the input fields
       password: '', 
       userLocation: '',
-      userItems: [], // store cards in this array after fetching from API, then pass to Profile component as props
+      userItems: [], // store items in this array after fetching from API, then pass to Profile component as props  (each item is an object)
       userEmail: ''
     };
   } 
@@ -75,7 +75,8 @@ class App extends Component {
 
         <Switch>
         <Route exact path='/' render={(props) => (<Home
-          {...props} // add props here
+          {...props} 
+          allItems={this.state.allItems}
           />
           )} />
         <Route exact path='/additem' render={(props) => (<AddItem
