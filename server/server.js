@@ -11,6 +11,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', express.static(path.resolve(__dirname, '../')));
 app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
 
+// react router
+app.get('/user', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+app.get('/item/:id', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+app.get('/logIn', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+app.get('/logOut', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+app.get('/createItem', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+
+
 app.use('*', (req, res) => {
   res.status(404).send('Bad Request');
 });
