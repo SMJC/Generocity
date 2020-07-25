@@ -14,6 +14,7 @@ class AddItem extends Component {
   /*------TODO-----*/ 
   // define method to handle user input
   // define method to send input to DB upon submission
+  // add image upload
 
   render() { 
     return ( 
