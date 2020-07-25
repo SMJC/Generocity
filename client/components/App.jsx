@@ -47,11 +47,13 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <nav class="navbar navbar-expand-md navbar-light" style={{ backgroundColor: '#e3f2fd' }}>
-          <a class="navbar-brand" href="#">
-            generocity
-          </a>
+      <div className="backgroundColor" style={{ backgroundColor: '#FDFDFD' }}>
+        <nav class="navbar navbar-expand-md navbar-light" style={{ backgroundColor: '#e4f3fe' }}>
+          <NavLink to="/" class="nav-brand">
+            <a class="navbar-brand" href="#">
+              generocity
+            </a>
+          </NavLink>
           <button
             class="navbar-toggler"
             type="button"
@@ -66,8 +68,7 @@ class App extends Component {
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                {/* <a class="nav-link" href="#">Link</a> */}
+              <li class="nav-item active">
                 <NavLink to="/" class="nav-link">
                   Home
                 </NavLink>
@@ -111,7 +112,7 @@ class App extends Component {
                 </NavLink>
               </li>
               <li class="nav-item">
-                <NavLink to="/login" className="nav-link">
+                <NavLink to="/signup" className="nav-link">
                   Sign Up
                 </NavLink>
               </li>
