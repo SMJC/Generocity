@@ -20,7 +20,7 @@
 }
 
 .addItemBtn {
-  margin-left: 80%;
+  margin-left: 90%;
   margin-top: 20px;
   background-color: aliceblue;
   color: gray;
@@ -31,11 +31,20 @@
 .backgroundColor {
   height: 100vh;
 }
+/* .modal-content { ***need to change modal width!
+  width: 800px;
+} */
 
 .navbar-light {
   box-shadow: inset 0px 0px 20px 10px rgba(156, 156, 156, 0.178);
 }
 
+/* .form-group input {
+  width: 600px;
+}
+.form-group select {
+  width: 70%;
+} */
 
 /* ----------------Media Queries------------------ */
 /* TODO: */
