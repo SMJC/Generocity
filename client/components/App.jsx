@@ -17,7 +17,7 @@ class App extends Component {
       username: '', // username and password state values will be updated 'onChange' as the user types into the input fields
       password: '', 
       userLocation: '',
-      userItems: [], // store items in this array after fetching from API, then pass to Profile component as props  (each item is an object)
+      userItems: [], // maybe unnecessary - store items in this array after fetching from API, then pass to Profile component as props  (each item is an object)
       userEmail: ''
     };
   } 
@@ -32,9 +32,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-      <nav class="navbar navbar-expand-md navbar-light" style={{backgroundColor: '#e3f2fd'}}>
-      <a class="navbar-brand" href="#">generocity</a>
+      <div className="backgroundColor" style={{backgroundColor: '#FDFDFD'}}>
+      <nav class="navbar navbar-expand-md navbar-light" style={{backgroundColor: '#e4f3fe'}}>
+      <NavLink to="/" class="nav-brand"><a class="navbar-brand" href="#">generocity</a></NavLink>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -42,7 +42,7 @@ class App extends Component {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <NavLink to="/" class="nav-link">Home</NavLink>
           </li>
           <li class="nav-item">
             {/* <a class="nav-link" href="#">Link</a> */}
@@ -65,7 +65,7 @@ class App extends Component {
         <NavLink to="/login" className="nav-link" style={{marginRight: '10px'}}>Login</NavLink>
         </li>
         <li class="nav-item">
-        <NavLink to="/login" className="nav-link">Sign Up</NavLink>
+        <NavLink to="/signup" className="nav-link">Sign Up</NavLink>
         </li>
         </ul>
       </div>
