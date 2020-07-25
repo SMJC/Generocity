@@ -20,7 +20,7 @@ class App extends Component {
           itemCategory: 'sporting equipment',
           itemAddress: '94087',
           itemUserId: 'Reid',
-          itemStatus: false,
+          itemStatus: 'false',
         },
         {
           itemTitle: 'vase',
@@ -28,7 +28,7 @@ class App extends Component {
           itemCategory: 'ornament',
           itemAddress: '91054',
           itemUserId: 'Dave',
-          itemStatus: true,
+          itemStatus: 'true',
         },
       ], // (each item is an object)
       isloggedIn: false,

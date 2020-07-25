@@ -1,3 +1,7 @@
+body {
+  background-color: $paleWhite;
+}
+
 /* items grid container */
 .itemsContainer {
   padding: 3rem;
@@ -6,18 +10,29 @@
   /* min-width: 950px; */
 }
 
-/* individual item card container */
+
+/* card container: which includes everything within a card */
 .cardContainer {
   justify-content: flex-start;
   margin: 0.5rem;
   max-width: 300px;
   height: auto;
   box-shadow: 1px 1px 7px rgba(22, 22, 22, 0.329);
-  background-color: #ffffff;
+  background-color: $nearlyWhite;
 }
-.itemCard {
+
+/* invidivual section within a card */
+.cardItem {
   margin: 25px;
 }
+
+/* user profile container */
+.userProfile {
+  position: relative;
+  margin-top: 30px;
+  margin-left: 60px;
+}
+
 
 .addItemBtn {
   margin-left: 90%;

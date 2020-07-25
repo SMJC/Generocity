@@ -10,26 +10,30 @@ class Profile extends Component {
   render() {
     const { allItems, userEmail, userZip } = this.props;
     // query by userId
-
     const cards = allItems.map((item) => {
       return (
-        <ItemCard
-          name={item.itemTitle}
-          userid={item.itemUserId}
-          location={item.itemAddress}
-          status={item.itemStatus}
-        />
+        <section className="cardContainer">
+          <section className="cardItem">
+            <ItemCard
+              name={item.itemTitle}
+              userid={item.itemUserId}
+              location={item.itemAddress}
+              status={item.itemStatus}
+            />
+          </section>
+          <section className="cardItem">Additional functionality</section>
+        </section>
       );
     });
 
     return (
       <>
-        {/* <section className="userProfile">
+        <section className="userProfile">
           <p>
-            User Email: {userEmail} User Location: {userZip}
+            User Email: {userEmail} <br>User Location: {userZip}</br>
           </p>
-        </section> */}
-        <section className="cardsContainer">{cards}</section>
+        </section>
+        <section className="itemsContainer">{cards}</section>
       </>
     );
   }
