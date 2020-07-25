@@ -25,6 +25,7 @@ class AddItem extends Component {
     return ( 
       <div>Hi from AddItem!
 
+{/* image input */}
       <div class="input-group mb-3">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="inputGroupFile02"></input>
