@@ -35,7 +35,9 @@ class AddItem extends Component {
           <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
         </div>
       </div>
+{/**/ }
 
+{/*end component div*/}
       </div>
      );
   }
