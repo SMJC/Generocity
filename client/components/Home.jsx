@@ -1,7 +1,8 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import ItemCard from './ItemCard.jsx'
-import AddItem from './AddItem'
-import '../styles/Home.css'
+import ItemCard from './ItemCard.jsx';
+import AddItem from './AddItem';
+import '../styles/application.scss';
 
 class Home extends Component {
   constructor(props) {
@@ -18,7 +19,6 @@ class Home extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this)
   }
-  
 
   /*------TODO-----*/ 
   // define method to handle user input
@@ -34,6 +34,7 @@ class Home extends Component {
         itemImage: e.target.value /**URL.createObjectURL(e.target.files[0]) is probably only for displaying a temp image */
       })
     }
+    /*------SUBMIT ADD ITEM INFO-----*/ 
 
   handleSubmit(e) {
     e.preventDefault();
@@ -69,16 +70,20 @@ class Home extends Component {
   render() { 
     const {allItems} = this.props; // provides this.state.allItems as an array
     // define *map method to transform allItems into char cards
-  const cards = allItems.map((item) => {
-    return (
-        <ItemCard 
-          name={item.name}
-          // other props here
+    const cards = allItems.map((item) => {
+      return (
+        <div className="cardContainer">
+          <ItemCard
+            name={item.itemTitle}
+            userid={item.itemUserId}
+            location={item.itemAddress}
+            status={item.itemStatus}
           />
-         );
-      });
+        </div>
+      );
+    });
 
-    return ( 
+    return (
       <>
 {/* <!-- Button trigger modal --> */}
 <button type="button" class="btn btn-dark addItemBtn" data-toggle="modal" data-target="#addItemModal">
@@ -117,5 +122,5 @@ class Home extends Component {
      );
   }
 }
- 
+
 export default Home;

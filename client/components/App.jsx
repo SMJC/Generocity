@@ -127,7 +127,15 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={(props) => <Home {...props} allItems={this.state.allItems} userEmail={this.state.userEmail} userZip={this.state.userZip}/>}
+            render={(props) => (
+              <Home
+                {...props}
+                allItems={this.state.allItems}
+                userItems={this.state.userItems}
+                userEmail={this.state.userEmail}
+                userLocation={this.state.userLocation}
+              />
+            )}
           />
           <Route
             exact
@@ -161,7 +169,10 @@ class App extends Component {
             path="/profile"
             render={(props) => (
               <Profile
-                {...props} // add props here
+                {...props}
+                allItems={this.state.allItems}
+                userEmail={this.state.userEmail}
+                userLocation={this.state.userZip}
               />
             )}
           />

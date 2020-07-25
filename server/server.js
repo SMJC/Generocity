@@ -15,6 +15,11 @@ app.get('/login', (req, res) => res.sendFile(path.resolve(__dirname, '../index.h
 app.get('/signup', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
 
 
+// react router
+app.get('/profile', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+app.get('/logIn', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+
+
 app.use('*', (req, res) => {
   res.status(404).send('Bad Request');
 });

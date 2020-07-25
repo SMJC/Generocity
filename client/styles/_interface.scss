@@ -1,22 +1,22 @@
-
 /* items grid container */
 .itemsContainer {
   padding: 3rem;
   display: grid;
-  grid-template-columns: 20fr 20fr 20fr 20fr 20fr; /*can add a media query for smaller screens/responsivity*/  
+  grid-template-columns: 20fr 20fr 20fr 20fr 20fr; /*can add a media query for smaller screens/responsivity*/
   /* min-width: 950px; */
 }
 
 /* individual item card container */
-.itemCard {
-  /* display: flex;
-  flex-direction: row; */
+.cardContainer {
   justify-content: flex-start;
   margin: 0.5rem;
   max-width: 300px;
-  height: 100px;
+  height: auto;
   box-shadow: 1px 1px 7px rgba(22, 22, 22, 0.329);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
+}
+.itemCard {
+  margin: 25px;
 }
 
 .addItemBtn {
@@ -52,13 +52,11 @@
 
 @media (max-width: 1550px) {
   .itemsContainer {
-    grid-template-columns: 25fr 25fr 25fr 25fr; /*can add a media query for smaller screens/responsivity*/  
-  
+    grid-template-columns: 25fr 25fr 25fr 25fr; /*can add a media query for smaller screens/responsivity*/
   }
 }
 @media (max-width: 1150px) {
   .itemsContainer {
-    grid-template-columns: 33fr 33fr 33fr; /*can add a media query for smaller screens/responsivity*/  
-  
+    grid-template-columns: 33fr 33fr 33fr; /*can add a media query for smaller screens/responsivity*/
   }
 }
