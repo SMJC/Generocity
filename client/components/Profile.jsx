@@ -16,6 +16,7 @@ class Profile extends Component {
           itemTitle: 'basketball',
           itemDescription: 'an orange ball',
           itemCategory: 'sporting equipment',
+          itemImage: '',
           itemAddress: '94087',
           itemUserId: 'Reid',
           itemStatus: 'false',
@@ -24,12 +25,42 @@ class Profile extends Component {
           itemTitle: 'vase',
           itemDescription: 'an old vase',
           itemCategory: 'ornament',
+          itemImage: '',
           itemAddress: '91054',
           itemUserId: 'Dave',
           itemStatus: 'true',
         },
       ],
     };
+    // handleChange on edit of items
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
+    //
+  }
+
+  //handle event click
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+  handleFileChange(e) {
+    console.log('input Image:', e.target.value);
+    this.setState({
+      itemImage:
+        e.target
+          .value /**URL.createObjectURL(e.target.files[0]) is probably only for displaying a temp image */,
+    });
+  }
+  //
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const { itemTitle, itemDescription, itemCategory, itemImage, itemAddress } = this.state;
+    const body = { itemTitle, itemDescription, itemCategory, itemImage, itemAddress };
+    body.itemOwner = this.props.userEmail;
+    body.itemZip = this.props.userZip;
+    console.log('submit AddItem req body:', body);
   }
 
   componentDidMount() {
@@ -59,19 +90,25 @@ class Profile extends Component {
   render() {
     const { userItems } = this.state;
     const { userFirstName, userLastName, userEmail, userId } = this.state;
-    // query by userId
     const cards = userItems.map((item) => {
       return (
         <section className="cardContainer">
-          <section className="itemText">
-            <ItemCard
-              name={item.itemTitle}
-              userid={item.itemUserId}
-              location={item.itemAddress}
-              status={item.itemStatus}
-            />
+          <ItemCard
+            name={item.itemTitle}
+            userid={item.itemUserId}
+            location={item.itemAddress}
+            status={item.itemStatus}
+          />
+          <section className="cardItem">
+            <button
+              type="button"
+              class="btn btn-dark editItemBtn"
+              data-toggle="modal"
+              data-target="#editItemModal"
+            >
+              Edit Item
+            </button>
           </section>
-          <section className="cardItem">Additional functionality</section>
         </section>
       );
     });
