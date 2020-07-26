@@ -21,7 +21,7 @@ class EditItem extends Component {
                 type="email"
                 className="form-control form-control-lg"
                 id="colFormLabelLg"
-                placeholder="col-form-label-lg"
+                placeholder="Change Title"
                 name="itemTitle"
                 onChange={(e) => this.props.handleChange(e)}
               ></input>
@@ -37,7 +37,7 @@ class EditItem extends Component {
                 type="email"
                 className="form-control"
                 id="colFormLabel"
-                placeholder="Tell us about the item!"
+                placeholder="Revise Item Description"
                 name="itemDescription"
                 onChange={(e) => this.props.handleChange(e)}
               ></input>
@@ -77,7 +77,7 @@ class EditItem extends Component {
                 type="email"
                 className="form-control form-control-sm"
                 id="colFormLabelSm"
-                placeholder="Where can others find this item?"
+                placeholder="Revise pickup address"
                 name="itemAddress"
                 onChange={(e) => this.props.handleChange(e)}
               ></input>

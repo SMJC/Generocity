@@ -122,7 +122,7 @@ class Profile extends Component {
       <>
         <div
           class="modal fade"
-          id="addItemModal"
+          id="editItemModal"
           tabIndex="-1"
           role="dialog"
           aria-labelledby="exampleModalScrollableTitle"
