@@ -10,9 +10,9 @@ const io = socket(server);
 const PORT = 3000;
 
 io.on("connection", socket => {
-  socket.emit("your id", socket.id);
-  socket.on("send message", body => {
-      io.emit("message", body)
+  socket.emit("your id", socket.id); // emits the 'your id' event to client, along with user's socket ID
+  socket.on("send message", body => { // when the client emits the 'send message' event, (i.e. when user sends msg), server emits the 'message' event
+      io.emit("message", body) // the client listens for the 'message' event, and appends the 'body' (sent from server) to the DOM
   })
 })
 
@@ -25,6 +25,8 @@ app.get('/profile', (req, res) => res.sendFile(path.resolve(__dirname, '../index
 app.get('/login', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
 app.get('/signup', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
 app.get('/chat', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+app.get('/messages', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+
 
 
 

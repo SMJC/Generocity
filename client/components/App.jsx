@@ -7,6 +7,7 @@ import Home from './Home.jsx';
 import Profile from './Profile.jsx';
 import AddItem from './AddItem.jsx';
 import Chat from './chat/Chat.jsx'
+import Messages from './chat/Messages.jsx'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
@@ -45,6 +46,7 @@ class App extends Component {
       userCity: '',
       userState: '',
       userZip: '',
+      userMessages: ['messager1', 'messager2'],
 
     };
     this.handleChange = this.handleChange.bind(this);
@@ -173,6 +175,11 @@ class App extends Component {
                   Chat
                 </NavLink>
               </li>
+              <li className="nav-item active">
+                <NavLink to="/messages" className="nav-link">
+                  Messages
+                </NavLink>
+              </li>
               <li className="nav-item">
                 {/* <a class="nav-link" href="#">Link</a> */}
                 <NavLink to="/profile" className="nav-link">
@@ -293,6 +300,18 @@ class App extends Component {
               />
             )}
           />
+
+              <Route
+            exact
+            path="/messages"
+            render={(props) => (
+              <Messages
+                {...props}
+                userMessages={this.state.userMessages}
+              />
+            )}
+          />  
+
         </Switch>
       </div>
     );

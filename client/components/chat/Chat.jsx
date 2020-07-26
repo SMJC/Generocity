@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import '../../scss/app.scss';
 
 
-const Chat = () => {
+const Chat = (props) => {
   const [yourID, setYourID] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -42,13 +42,13 @@ const Chat = () => {
   }
 
   return (
-    <div className="container">
-      <div className="row" style={{height: '45vh'}}></div>
+    <div className="container chatContainer">
+      <div className="row chatRow" style={{height: '45vh', width: '100%'}}></div>
         {messages.map((message, index) => {
           // if you are the sender, render your message
           if (message.id === yourID) {
             return (
-              <div className="row" key={index} style={{width: '100%', display: 'flex', justifyContent: 'flex-end'}}>
+              <div className="row" key={index} style={{width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0px'}}>
                 <p>
                   {message.body}
                 </p>
@@ -57,7 +57,7 @@ const Chat = () => {
           }
           // if someone else is the sender, render their message
           return (
-            <div className="row" key={index} style={{width: '100%', display: 'flex', justifyContent: 'flex-end'}}>
+            <div className="row" key={index} style={{width: '100%', display: 'flex', justifyContent: 'flex-start', backgroundColor: 'whitesmoke', margin: '0px'}}>
               <p>
                 {message.body}
               </p>
@@ -86,7 +86,7 @@ const Chat = () => {
         onChange={handleChange} 
     ></textarea>
   </div>
-  <button type="submit" class="btn btn-primary w-100" onClick={sendMessage}>Send Message</button>
+  <button type="submit" class="btn btn-primary w-100 appButton" onClick={sendMessage}>Send Message</button>
 </form>
 
     </div>
