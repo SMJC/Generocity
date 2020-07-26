@@ -14,6 +14,7 @@ class Home extends Component {
       itemCategory: '',
       itemImage: '',
       claimed: false,
+      user_id: 1,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,38 +42,45 @@ class Home extends Component {
   }
 
 
- /*--- POST request to add item to server---- */
+  /*--- POST request to add item to server---- */
   handleSubmit(e) {
     e.preventDefault();
 
-    const { itemTitle, itemDescription, itemCategory, itemImage } = this.state;
-    const body = { itemTitle, itemDescription, itemCategory, itemImage };
+    const { itemTitle, itemDescription, itemCategory, itemImage, claimed, user_id } = this.state;
+    const body = { title: itemTitle, description: itemDescription, image: itemImage, category: itemCategory, status: claimed, user_id };
+    console.log('itemCategory', itemCategory);
+    /* TO DO: 
+    -acquire user_id when logged in to send to back end to update data 
+    -drop down is not populating this.state.itemCategory
+    */
+
     // body.itemOwner = this.props.userId; *dont need userId bc it will be in query string
     // const userAddress = Object.assign({}, this.props.userAddress); 
     // *dont need address bc server will send back the zip
     // body.itemAddress = userAddress; // need to make a deep copy using obj. assign
 
     console.log('submit AddItem req body:', body);
-    const url = '/item' + this.props.userId;
-      // fetch(url, {
-      //   method: 'POST',
-      //   headers: {
-      //     "Content-Type": "Application/JSON"
-      //   },
-      //   body: JSON.stringify(body)
-      // })
-      // .then(res => {
-      //   console.log("res in AddItem", res);
-      //   res.json();
-      //   // refresh state values
-      //   this.setState({itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: ''})
-      //   // return to home page
-      //   this.props.history.push('/')
-      // })
-      // .catch(err => {
-      //   console.log('AddItem Post error: ', err);
-      //   this.setState({itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: ''})
-      // });
+    const url = '/item/add';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "Application/JSON"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(res => {
+        res.json()
+        // refresh state values
+        // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
+        // return to home page
+        // this.props.history.push('/')
+        console.log("res in AddItem", res);
+      })
+      .catch(err => {
+        console.log('AddItem Post error: ', err);
+        // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
+        this.props.history.push('/')
+      });
   }
 
   render() {
@@ -83,13 +91,14 @@ class Home extends Component {
     const cards = allItems.map((item) => {
       return (
         <section className="cardContainer">
-            <ItemCard
-              name={item.itemTitle}
-              userid={item.itemUserId}
-              location={item.itemAddress}
-              status={item.itemStatus}
-              sendMessageButton={this.props.sendMessage}
-            />
+          <ItemCard
+            item={item}
+            // name={item.itemTitle}
+            // userid={item.itemUserId}
+            // location={item.itemAddress}
+            // status={item.itemStatus}
+            sendMessageButton={this.props.sendMessage}
+          />
         </section>
       );
     });
