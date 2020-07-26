@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
-import '../../styles/application.scss';
+import '../../scss/app.scss';
 
 
 const Chat = () => {
@@ -57,7 +57,7 @@ const Chat = () => {
           }
           // if someone else is the sender, render their message
           return (
-            <div className="row" key={index} style={{width: '100%', display: 'flex', justifyContent: 'flex-start'}}>
+            <div className="row" key={index} style={{width: '100%', display: 'flex', justifyContent: 'flex-end'}}>
               <p>
                 {message.body}
               </p>
