@@ -1,3 +1,8 @@
+import React, { useState, useEffect, useRef } from "react";
+import io from "socket.io-client";
+import '../../styles/application.scss';
+
+
 const Chat = () => {
   const [yourID, setYourID] = useState();
   const [messages, setMessages] = useState([]);
@@ -37,13 +42,13 @@ const Chat = () => {
   }
 
   return (
-    <div>
-      <div className="container">
+    <div className="container">
+      <div className="row" style={{height: '45vh'}}></div>
         {messages.map((message, index) => {
           // if you are the sender, render your message
           if (message.id === yourID) {
             return (
-              <div className="row" key={index}>
+              <div className="row" key={index} style={{width: '100%', display: 'flex', justifyContent: 'flex-end'}}>
                 <p>
                   {message.body}
                 </p>
@@ -52,7 +57,7 @@ const Chat = () => {
           }
           // if someone else is the sender, render their message
           return (
-            <div class="row" key={index}>
+            <div className="row" key={index} style={{width: '100%', display: 'flex', justifyContent: 'flex-start'}}>
               <p>
                 {message.body}
               </p>
@@ -61,14 +66,29 @@ const Chat = () => {
         })}
 
 
-      </div>
-      <Form onSubmit={sendMessage}>
+    
+      {/* <Form onSubmit={sendMessage}>
         <TextArea 
         value={message} 
         onChange={handleChange} 
         placeholder="Say something..." />
         <Button>Send</Button>
-      </Form>
+      </Form> */}
+
+      <form>
+      <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea 
+    class="form-control" 
+    id="exampleFormControlTextarea1" 
+    rows="3"
+    value={message} 
+        onChange={handleChange} 
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary w-100" onClick={sendMessage}>Send Message</button>
+</form>
+
     </div>
   );
 };

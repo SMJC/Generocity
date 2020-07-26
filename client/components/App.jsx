@@ -5,6 +5,7 @@ import Login from './Login.jsx';
 import Home from './Home.jsx';
 import Profile from './Profile.jsx';
 import AddItem from './AddItem.jsx';
+import Chat from './chat/Chat.jsx'
 import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
@@ -169,8 +170,8 @@ class App extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <NavLink to="/" className="nav-link">
-                  Home
+                <NavLink to="/chat" className="nav-link">
+                  Chat
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -272,6 +273,18 @@ class App extends Component {
             path="/profile"
             render={(props) => (
               <Profile
+                {...props}
+                allItems={this.state.allItems}
+                userEmail={this.state.userEmail}
+                userLocation={this.state.userZip}
+              />
+            )}
+          />
+                <Route
+            exact
+            path="/chat"
+            render={(props) => (
+              <Chat
                 {...props}
                 allItems={this.state.allItems}
                 userEmail={this.state.userEmail}
