@@ -17,11 +17,6 @@ router.post('/add', ItemsController.postItem, (req, res, next) => {
   res.send(200);
 });
 
-// // GET all items that user has posted
-// router.get('/:user_id', ItemsController.getUserItems, (req, res, next) => {
-//   res.status(200).json(res.locals);
-// });
-
 // EDIT single item that user has posted
 router.patch('/:item_id', ItemsController.editUserItem, (req, res, next) => {
   res.send(200);
@@ -31,11 +26,5 @@ router.patch('/:item_id', ItemsController.editUserItem, (req, res, next) => {
 router.delete('/:item_id', ItemsController.deleteItem, (req, res, next) => {
   res.send(200);
 })
-
-// //***** STRETCH FEATURES *****//
-// router.get('/:filter', ItemsController.filterByCategory, (req, res, next) => {
-//   res.send(200);
-// })
-
 
 module.exports = router;

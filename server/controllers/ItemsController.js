@@ -38,28 +38,6 @@ ItemsController.postItem = (req, res, next) => {
   });
 };
 
-// ItemsController.getUserItems = (req, res, next) => {
-//   // console.log(`req.params.id`, req.params.user);
-//   const { user_id } = req.params;
-//   console.log('user', user_id);
-
-//   const query = `SELECT u._id, u.email, I.*
-//   FROM public.users u
-//   RIGHT OUTER JOIN public.items i ON u._id=i.user_id
-//   WHERE u._id=${user_id}`
-
-//   db.query(query, (err, data) => {
-//     if (err) {
-//       console.log('ERROR: ', err);;
-//     }
-//     // if successful, query will return list of itmems that user has posted
-//     const { rows } = data;
-//     res.locals.items = rows;
-//     console.log(`Successfully made GET request for all items that user has posted.`);
-//     return next();
-//   })
-// }
-
 ItemsController.editUserItem = (req, res, next) => {
   const { item_id } = req.params;
   const { title, description, image, category, status } = req.body;
@@ -100,26 +78,6 @@ ItemsController.deleteItem = (req, res, next) => {
     return next();
   })
 }
-
-// ItemsController.filterByCategory = (req, res, next) => {
-//   const { filter } = req.params;
-
-//   const query = `
-//   SELECT * FROM public.items
-//   WHERE category=${filter}`
-
-//   db.query(query, (err, data) => {
-//     if (err) {
-//       console.log('ERROR: ', err);
-//     }
-//     // if successful, query will filter by category (determined by front-end) and return list of filtered items
-//     console.log('rows', data.rows);
-//     const { rows } = data;
-//     res.locals.items = rows;
-//     console.log(`Successfully made GET request for all items filtered by: ${filter}.`);
-//     return next();
-//   })
-// }
 
 module.exports = ItemsController;
 
