@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
-import '../styles/Home.css'
+import '../scss/app.scss';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class ItemCard extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.state = {  // ***** may not need this info as state at all - it will be stored in the item object (which is an element in the allItems array)
-      itemLocation: '', // zipcode
-      ownedBy: '',
-      claimed: false,
-      address: '' // for MVP, maybe we display address so other users can pick up item w/o messaging other users
-    }
   }
-  render() { 
-    return ( 
+  render() {
+    return (
       <article className="itemCard">
-      <span>Hi, I'm a {this.props.name} ItemCard!</span>
+        <div className="itemText">
+          <h5>{this.props.name}</h5>
+          <p>
+            Location: {this.props.location} <br />
+            Owner: {this.props.userid}
+            <br />
+            Claimed: {this.props.status}
+          </p>
+          <button type="button" 
+          class="btn btn-primary appButton" 
+          style={{width: '100%'}}
+          value={this.props.userid}
+          onClick={(e) => this.props.sendMessageButton(e)}
+          >Message Lister</button>
+        </div>
       </article>
-     );
+    );
   }
 }
- 
+
 export default ItemCard;
