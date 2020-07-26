@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class AddItem extends Component {
+class EditItem extends Component {
   constructor(props) {
     super(props);
   }
@@ -8,7 +8,7 @@ class AddItem extends Component {
   render() {
     return (
       <div>
-        Hi from AddItem!
+        Edit Item
         {/* item details input */}
         <form>
           {/** ------- Item Title -------- */}
@@ -68,7 +68,7 @@ class AddItem extends Component {
             </div>
           </div>
           {/** ------- Pickup Address -------- */}
-          {/* <div className="form-group row">
+          <div className="form-group row">
             <label htmlFor="colFormLabelSm" className="col-sm-2 col-form-label col-form-label-md">
               Pickup address:{' '}
             </label>
@@ -82,7 +82,7 @@ class AddItem extends Component {
                 onChange={(e) => this.props.handleChange(e)}
               ></input>
             </div>
-          </div> */}
+          </div>
 
           {/* image input */}
           <div className="input-group mb-3">
@@ -115,4 +115,4 @@ class AddItem extends Component {
   }
 }
 
-export default AddItem;
+export default EditItem;

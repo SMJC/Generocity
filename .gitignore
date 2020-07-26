@@ -1,4 +1,4 @@
 node_modules
-build/*.js
-npm-debug.log
+package-lock.json
 .DS_Store
+npm-debug.log
