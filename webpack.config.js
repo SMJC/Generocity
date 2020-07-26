@@ -11,6 +11,10 @@ module.exports = {
     publicPath: '/dist/',
     proxy: {
       '/': 'http://localhost:3000/',
+      '/socket.io': {
+        target: 'http://localhost:3000',
+        ws: true
+    }
     },
   },
   module: {
@@ -37,6 +41,11 @@ module.exports = {
             loader: 'sass-loader', // compiles Sass to CSS
           },
         ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.jsx?/,
