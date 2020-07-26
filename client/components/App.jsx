@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/application.scss';
 import SignUp from './SignUp.jsx';
 import Login from './Login.jsx';
 import Home from './Home.jsx';
@@ -33,8 +34,12 @@ class App extends Component {
       ], // (each item is an object)
       isloggedIn: false,
       userEmail: 'email@email.com',
+      userPoints: '',
+      userFirstName: 'Captain',
+      userLastName: 'Marvel',
+      userId: '',
       password: '',
-      userZip: '94087',
+      userAddress: {zipcode: '', street: '', city: '', state: ''},
       //userPoints: 0,
     };
   }
@@ -131,9 +136,6 @@ class App extends Component {
               <Home
                 {...props}
                 allItems={this.state.allItems}
-                userItems={this.state.userItems}
-                userEmail={this.state.userEmail}
-                userLocation={this.state.userLocation}
               />
             )}
           />
@@ -171,8 +173,9 @@ class App extends Component {
               <Profile
                 {...props}
                 allItems={this.state.allItems}
-                userEmail={this.state.userEmail}
-                userLocation={this.state.userZip}
+                // email={this.state.userEmail}
+                // firstName={this.state.userFirstName}
+                // lastName={this.state.userLastName}
               />
             )}
           />

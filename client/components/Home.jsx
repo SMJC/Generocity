@@ -7,13 +7,13 @@ import '../styles/application.scss';
 class Home extends Component {
   constructor(props) {
     super(props);
+    // tracks AddItem values
     this.state = {
       itemTitle: '',
       itemDescription: '',
       itemCategory: '',
       itemImage: '',
       claimed: false,
-      itemAddress: '', // for MVP, maybe we display address so other users can pick up item w/o messaging other users
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

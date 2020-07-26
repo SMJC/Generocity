@@ -1,5 +1,5 @@
 body {
-  background-color: $paleWhite;
+  font-family: $nunito;
 }
 
 /* items grid container */
@@ -9,7 +9,6 @@ body {
   grid-template-columns: 20fr 20fr 20fr 20fr 20fr; /*can add a media query for smaller screens/responsivity*/
   /* min-width: 950px; */
 }
-
 
 /* card container: which includes everything within a card */
 .cardContainer {
@@ -33,7 +32,6 @@ body {
   margin-left: 60px;
 }
 
-
 .addItemBtn {
   margin-left: 90%;
   margin-top: 20px;
@@ -45,6 +43,7 @@ body {
 /* Div rendered by App (sets background color for whole app) */
 .backgroundColor {
   height: 100vh;
+  z-index: -100;
 }
 /* .modal-content { ***need to change modal width!
   width: 800px;
