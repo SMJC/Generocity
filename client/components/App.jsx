@@ -173,6 +173,7 @@ class App extends Component {
               <Profile
                 {...props}
                 allItems={this.state.allItems}
+                userId={this.state.userId}
                 // email={this.state.userEmail}
                 // firstName={this.state.userFirstName}
                 // lastName={this.state.userLastName}
