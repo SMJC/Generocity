@@ -17,28 +17,11 @@ class App extends Component {
     this.state = {
       // store most state in App component, make available to child components as props
       isloggedIn: false,
-      allItems: [
-        {
-          itemTitle: 'basketball',
-          itemDescription: 'an orange ball',
-          itemCategory: 'sporting equipment',
-          itemAddress: '94087',
-          itemUserId: 'Reid',
-          itemStatus: 'false',
-        },
-        {
-          itemTitle: 'vase',
-          itemDescription: 'an old vase',
-          itemCategory: 'ornament',
-          itemAddress: '91054',
-          itemUserId: 'Dave',
-          itemStatus: 'true',
-        },
-      ], // (each item is an object)
-      userEmail: 'email@email.com',
+      allItems: [], // (each item is an object)
+      userEmail: '',
       userPoints: '',
-      userFirstName: 'Captain',
-      userLastName: 'Marvel',
+      userFirstName: '',
+      userLastName: '',
       userId: '',
       password: '',
       userStreet: '',
@@ -55,58 +38,58 @@ class App extends Component {
     this.getAllItems = this.getAllItems.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
   }
-    componentDidUpdate() {
-      // this.getAllItems();
-    }
-    handleChange(e) { 
-      this.setState({ [e.target.name]: e.target.value})
-    }
-    /* Send a message to another user from ItemCard button */
-    // this needs a POST request to update both users' 'userMessages' prop in DB
-    // it also needs to redirect to Messages component
-    handleSendMessage(e) {
-      e.preventDefault();
-      const newUserMessages = [...this.state.userMessages];
-      newUserMessages.push(e.target.value);
-      this.setState({userMessages: newUserMessages})
-    }
-    /*--- POST request to /LOG-IN---- */
-    handleLoginSubmit(e) {
-      e.preventDefault();
-     
-      const {userEmail, password} = this.state;
-      const body = {userEmail, password};
-  
-      // fetch('/log-in', {
-      //   method: 'POST',
-      //   headers: {
-      //     "Content-Type": "Application/JSON"
-      //   },
-      //   body: JSON.stringify(body)
-      // })
-      // .then(res => {
-      //   console.log("res in /log-in", res);
-      //   res.json();
-  
-      //   this.setState({isLoggedIn: true, password: ''})
-      //   this.props.history.push('/')
-      // })
-      // .catch(err => {
-      //   console.log('/LOG-IN Post error: ', err);
-      //   this.setState({userEmail: '', password: ''})
-      // });
-      
-     }
+  componentDidMount() {
+    this.getAllItems();
+  }
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  /* Send a message to another user from ItemCard button */
+  // this needs a POST request to update both users' 'userMessages' prop in DB
+  // it also needs to redirect to Messages component
+  handleSendMessage(e) {
+    e.preventDefault();
+    const newUserMessages = [...this.state.userMessages];
+    newUserMessages.push(e.target.value);
+    this.setState({ userMessages: newUserMessages })
+  }
+  /*--- POST request to /LOG-IN---- */
+  handleLoginSubmit(e) {
+    e.preventDefault();
+
+    const { userEmail, password } = this.state;
+    const body = { userEmail, password };
+
+    // fetch('/log-in', {
+    //   method: 'POST',
+    //   headers: {
+    //     "Content-Type": "Application/JSON"
+    //   },
+    //   body: JSON.stringify(body)
+    // })
+    // .then(res => {
+    //   console.log("res in /log-in", res);
+    //   res.json();
+
+    //   this.setState({isLoggedIn: true, password: ''})
+    //   this.props.history.push('/')
+    // })
+    // .catch(err => {
+    //   console.log('/LOG-IN Post error: ', err);
+    //   this.setState({userEmail: '', password: ''})
+    // });
+
+  }
 
   /*----------------POST request To SIGNUP-------------------*/
-   handleSignUpSubmit(e) {
+  handleSignUpSubmit(e) {
     e.preventDefault();
-   
-    const {userFirstName, userLastName, password, userEmail, userStreet, userStreet2, userState, userCity, userZip} = this.state;
-    const body = {userFirstName, userLastName, password, userEmail, userStreet, userStreet2, userState, userCity, userZip};
+
+    const { userFirstName, userLastName, password, userEmail, userStreet, userStreet2, userState, userCity, userZip } = this.state;
+    const body = { userFirstName, userLastName, password, userEmail, userStreet, userStreet2, userState, userCity, userZip };
     console.log("submit signUp req body:", body)
     // make POST request to server
-     
+
     // fetch('/sign-up', {
     //   method: 'POST',
     //   headers: {
@@ -128,25 +111,22 @@ class App extends Component {
     // });
   };
 
-      /*--- GET Request for All items--- */
-    getAllItems() { // call in componentDidMount
-    
-        fetch('/item/all')
-        .then(res => {
-          console.log("res in GET /item/all", res);
-          res.json();
-         
-           })
-        .then(array => {
-          // update state with array
-          this.setState({allItems: array})
-        } )
-        // this.props.history.push('/'))
-        .catch(err => {
-          console.log('/item/all GET error: ', err);
-        });
-        
-       }
+  /*--- GET Request for All items--- */
+  getAllItems() { // call in componentDidMount
+
+    fetch('/item/all')
+      .then(res => res.json())
+      .then(res => {
+        console.log('res', res);
+        // update state with array
+        this.setState({ allItems: res.items });
+      })
+      // this.props.history.push('/'))
+      .catch(err => {
+        console.log('/item/all GET error: ', err);
+      });
+
+  }
   /*----------------To Do-------------------*/
 
   // define method to fetch user data from DB
@@ -249,7 +229,7 @@ class App extends Component {
                 userAddress={this.state.userAddress}
                 userId={this.state.userId}
                 sendMessage={this.handleSendMessage}
-          
+
               />
             )}
           />
@@ -278,8 +258,8 @@ class App extends Component {
             path="/signup"
             render={(props) => (
               <SignUp
-              handleChange={this.handleChange}
-              handleSignUpSubmit={this.handleSignUpSubmit}
+                handleChange={this.handleChange}
+                handleSignUpSubmit={this.handleSignUpSubmit}
                 {...props} // add props here
               />
             )}
@@ -292,13 +272,13 @@ class App extends Component {
                 {...props}
                 allItems={this.state.allItems}
                 userId={this.state.userId}
-                // email={this.state.userEmail}
-                // firstName={this.state.userFirstName}
-                // lastName={this.state.userLastName}
+              // email={this.state.userEmail}
+              // firstName={this.state.userFirstName}
+              // lastName={this.state.userLastName}
               />
             )}
           />
-                <Route
+          <Route
             exact
             path="/chat"
             render={(props) => (
@@ -311,7 +291,7 @@ class App extends Component {
             )}
           />
 
-              <Route
+          <Route
             exact
             path="/messages"
             render={(props) => (
@@ -320,7 +300,7 @@ class App extends Component {
                 userMessages={this.state.userMessages}
               />
             )}
-          />  
+          />
 
         </Switch>
       </div>

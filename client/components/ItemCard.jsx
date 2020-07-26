@@ -7,21 +7,31 @@ class ItemCard extends Component {
     super(props)
   }
   render() {
+    const { _id, category, description, image, status, title, user_id } = this.props.item;
+    const { sendMessageButton } = this.props;
+
+    let claimed = status ? 'Yes' : 'No'
+
+    /* TO DO: 
+      backend: add location
+      frontend: add description & image
+      questions: value on message listener button?
+    */
     return (
       <article className="itemCard">
         <div className="itemText">
-          <h5>{this.props.name}</h5>
+          <h5>{title}</h5>
           <p>
-            Location: {this.props.location} <br />
-            Owner: {this.props.userid}
+            Location: Enter Location Here <br />
+            Owner ID: {user_id}
             <br />
-            Claimed: {this.props.status}
+            Claimed: {claimed}
           </p>
-          <button type="button" 
-          class="btn btn-primary appButton" 
-          style={{width: '100%'}}
-          value={this.props.userid}
-          onClick={(e) => this.props.sendMessageButton(e)}
+          <button type="button"
+            class="btn btn-primary appButton"
+            style={{ width: '100%' }}
+            value={user_id}
+            onClick={(e) => sendMessageButton(e)}
           >Message Lister</button>
         </div>
       </article>

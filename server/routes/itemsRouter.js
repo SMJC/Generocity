@@ -14,7 +14,7 @@ router.get('/all', ItemsController.getAllItems, (req, res, next) => {
 // POST single item
 // need user_id in req.body
 router.post('/add', ItemsController.postItem, (req, res, next) => {
-  res.send(200);
+  res.status(200).json({});
 });
 
 // EDIT single item that user has posted
