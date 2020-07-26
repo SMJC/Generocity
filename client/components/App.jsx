@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/application.scss';
+import '../scss/app.scss';
 import SignUp from './SignUp.jsx';
 import Login from './Login.jsx';
 import Home from './Home.jsx';
@@ -39,7 +39,7 @@ class App extends Component {
       userLastName: 'Marvel',
       userId: '',
       password: '',
-      userAddress: {zipcode: '', street: '', city: '', state: ''},
+      userAddress: { zipcode: '', street: '', city: '', state: '' },
       //userPoints: 0,
     };
   }
@@ -87,7 +87,7 @@ class App extends Component {
                   Profile
                 </NavLink>
               </li>
-              <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   href="#"
@@ -111,7 +111,7 @@ class App extends Component {
                     Something else here
                   </a>
                 </div>
-              </li>
+              </li> */}
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -132,12 +132,7 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={(props) => (
-              <Home
-                {...props}
-                allItems={this.state.allItems}
-              />
-            )}
+            render={(props) => <Home {...props} allItems={this.state.allItems} />}
           />
           <Route
             exact

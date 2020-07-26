@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ItemCard from './ItemCard.jsx';
-import '../styles/application.scss'; // would each page have different css?
+import '../scss/app.scss'; // would each page have different css?
 
 // create local state for get request of user profile
 class Profile extends Component {
@@ -11,7 +11,24 @@ class Profile extends Component {
       userFirstName: 'Captain',
       userLastName: 'Marvel',
       userEmail: 'email@emai.com',
-      userItems: [],
+      userItems: [
+        {
+          itemTitle: 'basketball',
+          itemDescription: 'an orange ball',
+          itemCategory: 'sporting equipment',
+          itemAddress: '94087',
+          itemUserId: 'Reid',
+          itemStatus: 'false',
+        },
+        {
+          itemTitle: 'vase',
+          itemDescription: 'an old vase',
+          itemCategory: 'ornament',
+          itemAddress: '91054',
+          itemUserId: 'Dave',
+          itemStatus: 'true',
+        },
+      ],
     };
   }
 
@@ -46,7 +63,7 @@ class Profile extends Component {
     const cards = userItems.map((item) => {
       return (
         <section className="cardContainer">
-          <section className="cardItem">
+          <section className="itemText">
             <ItemCard
               name={item.itemTitle}
               userid={item.itemUserId}

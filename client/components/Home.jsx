@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ItemCard from './ItemCard.jsx';
 import AddItem from './AddItem';
-import '../styles/application.scss';
+import '../scss/app.scss';
 
 class Home extends Component {
   constructor(props) {
@@ -75,14 +75,12 @@ class Home extends Component {
     const cards = allItems.map((item) => {
       return (
         <section className="cardContainer">
-          <section className="cardItem">
             <ItemCard
               name={item.itemTitle}
               userid={item.itemUserId}
               location={item.itemAddress}
               status={item.itemStatus}
             />
-          </section>
         </section>
       );
     });

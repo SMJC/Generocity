@@ -1,7 +1,15 @@
 body {
   font-family: $nunito;
+  font-size: $bodytext;
+  line-height: 1.4em;
+  background-color: $paleWhite;
 }
 
+h5 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+}
 /* items grid container */
 .itemsContainer {
   padding: 3rem;
@@ -21,7 +29,7 @@ body {
 }
 
 /* invidivual section within a card */
-.cardItem {
+.itemText {
   margin: 25px;
 }
 
