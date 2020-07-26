@@ -7,16 +7,17 @@ const Chat = (props) => {
   const [yourID, setYourID] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-
+  // const room = this.messenger;
   const socketRef = useRef();
 
   useEffect(() => {
     socketRef.current = io.connect('/'); // connects client to server
-
+    // socketRef.on('connect', (room) => {
+    //   socketRef.emit('room', room) // need to add room event listener in server.js
+    // })
     socketRef.current.on("your id", id => {
       setYourID(id); // server emits the 'your id' event and sends along an ID
     })
-
     socketRef.current.on("message", (message) => {
       console.log("here");
       receivedMessage(message);
@@ -77,7 +78,7 @@ const Chat = (props) => {
 
       <form>
       <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <label for="exampleFormControlTextarea1"></label>
     <textarea 
     class="form-control" 
     id="exampleFormControlTextarea1" 

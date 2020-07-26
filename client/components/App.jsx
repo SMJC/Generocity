@@ -61,6 +61,9 @@ class App extends Component {
     handleChange(e) { 
       this.setState({ [e.target.name]: e.target.value})
     }
+    /* Send a message to another user from ItemCard button */
+    // this needs a POST request to update both users' 'userMessages' prop in DB
+    // it also needs to redirect to Messages component
     handleSendMessage(e) {
       e.preventDefault();
       const newUserMessages = [...this.state.userMessages];
