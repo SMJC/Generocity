@@ -1,6 +1,10 @@
 const { Pool } = require('pg');
 
-const { PG_URI } = process.env;
+require('dotenv').config();
+
+// const { PG_URI } = 'process.env;'
+// npm installed 'dotenv' to store db url in hidden .env file for db security
+const PG_URI = process.env.PG_URI;
 
 // create a new pool here using the connection string above
 const pool = new Pool({

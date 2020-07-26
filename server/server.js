@@ -3,6 +3,8 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 const itemRouter = require('./routes/itemsRouter.js');
+const userRouter = require('./routes/userRouter.js');
+const filterRouter = require('./routes/filterRouter.js');
 
 // require dotenv to hide server uri
 require('dotenv').config();
@@ -16,6 +18,8 @@ app.use('/', express.static(path.resolve(__dirname, '../')));
 
 // Define Route Handlers
 app.use('/item', itemRouter);
+app.use('/user', userRouter);
+app.use('/filter', filterRouter);
 
 // Get Home Route 
 app.get('/', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../index.html')));
@@ -23,9 +27,6 @@ app.get('/', (req, res) => res.status(200).sendFile(path.resolve(__dirname, '../
 app.get('/profile', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
 app.get('/login', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
 app.get('/signup', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
-
-
-
 
 // Catch-All to handle unknown routes
 app.use('*', (req, res) => {
