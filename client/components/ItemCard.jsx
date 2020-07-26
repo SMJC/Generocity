@@ -3,6 +3,9 @@ import '../scss/app.scss';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ItemCard extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
       <article className="itemCard">
@@ -14,6 +17,12 @@ class ItemCard extends Component {
             <br />
             Claimed: {this.props.status}
           </p>
+          <button type="button" 
+          class="btn btn-primary appButton" 
+          style={{width: '100%'}}
+          value={this.props.userid}
+          onClick={(e) => this.props.sendMessageButton(e)}
+          >Message Lister</button>
         </div>
       </article>
     );

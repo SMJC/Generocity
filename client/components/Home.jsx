@@ -78,6 +78,7 @@ class Home extends Component {
   render() {
     const { allItems } = this.props; // provides this.state.allItems as an array
     console.log(allItems)
+    console.log(this.props.sendMessage)
     // define *map method to transform allItems into char cards
     const cards = allItems.map((item) => {
       return (
@@ -87,6 +88,7 @@ class Home extends Component {
               userid={item.itemUserId}
               location={item.itemAddress}
               status={item.itemStatus}
+              sendMessageButton={this.props.sendMessage}
             />
         </section>
       );

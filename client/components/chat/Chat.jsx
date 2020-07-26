@@ -14,7 +14,7 @@ const Chat = (props) => {
     socketRef.current = io.connect('/'); // connects client to server
 
     socketRef.current.on("your id", id => {
-      setYourID(id); // server emits the 'your id' event
+      setYourID(id); // server emits the 'your id' event and sends along an ID
     })
 
     socketRef.current.on("message", (message) => {
@@ -27,7 +27,7 @@ const Chat = (props) => {
     setMessages(oldMsgs => [...oldMsgs, message]);
   }
 
-  function sendMessage(e) {
+  function sendMessage(e) { // sends ID and body to server
     e.preventDefault();
     const messageObject = {
       body: message, // variables from state

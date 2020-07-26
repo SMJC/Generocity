@@ -10,6 +10,12 @@ const Messages = (props) => {
     e.preventDefault()
     setMessenger(e.target.value);
   }
+  /* TODO */
+  // add a method on Home component to append to the userMessages ID when 'send message' button is clicked
+  // dynamically add buttons to the lust for each socketID (these will be passed down as userMessengers prop from Home component)
+  // value of each button should be socketID
+  // buttons sould setMessenger to socketID
+  // pass down currentMessenger to Chat component
   return ( 
     <div className="container msgContainer">
       <div className="row" style={{height: '100vh'}}>

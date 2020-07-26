@@ -53,6 +53,7 @@ class App extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
     this.getAllItems = this.getAllItems.bind(this);
+    this.handleSendMessage = this.handleSendMessage.bind(this);
   }
     componentDidUpdate() {
       // this.getAllItems();
@@ -60,7 +61,12 @@ class App extends Component {
     handleChange(e) { 
       this.setState({ [e.target.name]: e.target.value})
     }
-
+    handleSendMessage(e) {
+      e.preventDefault();
+      const newUserMessages = [...this.state.userMessages];
+      newUserMessages.push(e.target.value);
+      this.setState({userMessages: newUserMessages})
+    }
     /*--- POST request to /LOG-IN---- */
     handleLoginSubmit(e) {
       e.preventDefault();
@@ -239,6 +245,7 @@ class App extends Component {
                 userEmail={this.state.userEmail}
                 userAddress={this.state.userAddress}
                 userId={this.state.userId}
+                sendMessage={this.handleSendMessage}
           
               />
             )}
