@@ -68,7 +68,7 @@ class AddItem extends Component {
             </div>
           </div>
           {/** ------- Pickup Address -------- */}
-          <div className="form-group row">
+          {/* <div className="form-group row">
             <label htmlFor="colFormLabelSm" className="col-sm-2 col-form-label col-form-label-md">
               Pickup address:{' '}
             </label>
@@ -82,7 +82,7 @@ class AddItem extends Component {
                 onChange={(e) => this.props.handleChange(e)}
               ></input>
             </div>
-          </div>
+          </div> */}
 
           {/* image input */}
           <div className="input-group mb-3">
