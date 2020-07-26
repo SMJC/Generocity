@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import ItemCard from './ItemCard.jsx';
 import AddItem from './AddItem';
-import '../styles/application.scss';
+import '../scss/app.scss';
 
 class Home extends Component {
   constructor(props) {
@@ -54,41 +54,40 @@ class Home extends Component {
 
     console.log('submit AddItem req body:', body);
     const url = '/item' + this.props.userId;
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "Application/JSON"
-        },
-        body: JSON.stringify(body)
-      })
-      .then(res => {
-        console.log("res in AddItem", res);
-        res.json();
-        // refresh state values
-        this.setState({itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: ''})
-        // return to home page
-        this.props.history.push('/')
-      })
-      .catch(err => {
-        console.log('AddItem Post error: ', err);
-        this.setState({itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: ''})
-      });
+      // fetch(url, {
+      //   method: 'POST',
+      //   headers: {
+      //     "Content-Type": "Application/JSON"
+      //   },
+      //   body: JSON.stringify(body)
+      // })
+      // .then(res => {
+      //   console.log("res in AddItem", res);
+      //   res.json();
+      //   // refresh state values
+      //   this.setState({itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: ''})
+      //   // return to home page
+      //   this.props.history.push('/')
+      // })
+      // .catch(err => {
+      //   console.log('AddItem Post error: ', err);
+      //   this.setState({itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: ''})
+      // });
   }
 
   render() {
     const { allItems } = this.props; // provides this.state.allItems as an array
+    console.log(allItems)
     // define *map method to transform allItems into char cards
     const cards = allItems.map((item) => {
       return (
         <section className="cardContainer">
-          <section className="cardItem">
             <ItemCard
               name={item.itemTitle}
               userid={item.itemUserId}
               location={item.itemAddress}
               status={item.itemStatus}
             />
-          </section>
         </section>
       );
     });

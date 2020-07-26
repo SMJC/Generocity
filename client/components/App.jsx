@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../scss/app.scss';
 import SignUp from './SignUp.jsx';
 import Login from './Login.jsx';
 import Home from './Home.jsx';
@@ -35,8 +36,8 @@ class App extends Component {
       ], // (each item is an object)
       userEmail: 'email@email.com',
       userPoints: '',
-      userFirstName: '',
-      userLastName: '',
+      userFirstName: 'Captain',
+      userLastName: 'Marvel',
       userId: '',
       password: '',
       userStreet: '',
@@ -45,8 +46,6 @@ class App extends Component {
       userState: '',
       userZip: '',
 
-
-      //userPoints: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -54,7 +53,7 @@ class App extends Component {
     this.getAllItems = this.getAllItems.bind(this);
   }
     componentDidUpdate() {
-      this.getAllItems();
+      // this.getAllItems();
     }
     handleChange(e) { 
       this.setState({ [e.target.name]: e.target.value})
@@ -67,24 +66,24 @@ class App extends Component {
       const {userEmail, password} = this.state;
       const body = {userEmail, password};
   
-      fetch('/log-in', {
-        method: 'POST',
-        headers: {
-          "Content-Type": "Application/JSON"
-        },
-        body: JSON.stringify(body)
-      })
-      .then(res => {
-        console.log("res in /log-in", res);
-        res.json();
+      // fetch('/log-in', {
+      //   method: 'POST',
+      //   headers: {
+      //     "Content-Type": "Application/JSON"
+      //   },
+      //   body: JSON.stringify(body)
+      // })
+      // .then(res => {
+      //   console.log("res in /log-in", res);
+      //   res.json();
   
-        this.setState({isLoggedIn: true, password: ''})
-        this.props.history.push('/')
-      })
-      .catch(err => {
-        console.log('/LOG-IN Post error: ', err);
-        this.setState({userEmail: '', password: ''})
-      });
+      //   this.setState({isLoggedIn: true, password: ''})
+      //   this.props.history.push('/')
+      // })
+      // .catch(err => {
+      //   console.log('/LOG-IN Post error: ', err);
+      //   this.setState({userEmail: '', password: ''})
+      // });
       
      }
 
@@ -97,25 +96,25 @@ class App extends Component {
     console.log("submit signUp req body:", body)
     // make POST request to server
      
-    fetch('/sign-up', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "Application/JSON"
-      },
-      body: JSON.stringify(body)
-    })
-    .then(res => {
-      console.log("res in signUp", res);
-      res.json();
-      // TODO: setState with isLoggedIn, clear pw
-      // return to home page
-      this.props.history.push('/')
-    })
-    .catch(err => {
-      console.log('AddItem Post error: ', err);
-      // todo - clear all fields with setState
-      this.setState({})
-    });
+    // fetch('/sign-up', {
+    //   method: 'POST',
+    //   headers: {
+    //     "Content-Type": "Application/JSON"
+    //   },
+    //   body: JSON.stringify(body)
+    // })
+    // .then(res => {
+    //   console.log("res in signUp", res);
+    //   res.json();
+    //   // TODO: setState with isLoggedIn, clear pw
+    //   // return to home page
+    //   this.props.history.push('/')
+    // })
+    // .catch(err => {
+    //   console.log('AddItem Post error: ', err);
+    //   // todo - clear all fields with setState
+    //   this.setState({})
+    // });
   };
 
       /*--- GET Request for All items--- */
@@ -180,7 +179,7 @@ class App extends Component {
                   Profile
                 </NavLink>
               </li>
-              <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   href="#"
@@ -204,7 +203,7 @@ class App extends Component {
                     Something else here
                   </a>
                 </div>
-              </li>
+              </li> */}
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -275,8 +274,10 @@ class App extends Component {
               <Profile
                 {...props}
                 allItems={this.state.allItems}
-                userEmail={this.state.userEmail}
-                userLocation={this.state.userZip}
+                userId={this.state.userId}
+                // email={this.state.userEmail}
+                // firstName={this.state.userFirstName}
+                // lastName={this.state.userLastName}
               />
             )}
           />
