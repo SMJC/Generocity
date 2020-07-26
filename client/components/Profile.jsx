@@ -47,9 +47,7 @@ class Profile extends Component {
   handleFileChange(e) {
     console.log('input Image:', e.target.value);
     this.setState({
-      itemImage:
-        e.target
-          .value /**URL.createObjectURL(e.target.files[0]) is probably only for displaying a temp image */,
+      itemImage: e.target.value,
     });
   }
   //
@@ -67,7 +65,6 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    // const { userEmail, userFirstName, userLastName } = this.props;
     fetch('/item/' + this.props.userId)
       .then((res) => res.json())
       .then((data) => {
