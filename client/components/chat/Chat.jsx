@@ -9,7 +9,7 @@ const Chat = () => {
     socketRef.current = io.connect('/'); // connects client to server
 
     socketRef.current.on("your id", id => {
-      setYourID(id); // server pemits the 'your id' event
+      setYourID(id); // server emits the 'your id' event
     })
 
     socketRef.current.on("message", (message) => {
@@ -59,6 +59,8 @@ const Chat = () => {
             </div>
           )
         })}
+
+
       </div>
       <Form onSubmit={sendMessage}>
         <TextArea 
