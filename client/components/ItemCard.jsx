@@ -11,7 +11,18 @@ class ItemCard extends Component {
     const { sendMessageButton } = this.props;
 
     let claimed = status ? 'Yes' : 'No'
-
+    let messageButton;
+    if (this.props.inProfile) {
+      messageButton =  null
+    } else {
+      messageButton =   <button type="button"
+      class="btn btn-primary appButton"
+      style={{ width: '100%' }}
+      value={user_id}
+      onClick={(e) => sendMessageButton(e)}
+    >Message Lister</button>
+    
+    }
     /* TO DO: 
       backend: add location
       frontend: add description & image
@@ -27,12 +38,8 @@ class ItemCard extends Component {
             <br />
             Claimed: {claimed}
           </p>
-          <button type="button"
-            class="btn btn-primary appButton"
-            style={{ width: '100%' }}
-            value={user_id}
-            onClick={(e) => sendMessageButton(e)}
-          >Message Lister</button>
+        {messageButton}  
+        
         </div>
       </article>
     );

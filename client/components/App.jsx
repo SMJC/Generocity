@@ -30,6 +30,14 @@ class App extends Component {
       userState: '',
       userZip: '',
       userMessages: ['messager1', 'messager2'],
+      //  item state
+      itemTitle: '',
+      itemDescription: '',
+      itemCategory: '',
+      itemImage: '',
+      claimed: false,
+      user_id: 1,
+      redirect: null
 
     };
     this.handleChange = this.handleChange.bind(this);
@@ -37,6 +45,8 @@ class App extends Component {
     this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
     this.getAllItems = this.getAllItems.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
+    this.handleSubmit=this.handleSubmit.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
   }
   componentDidMount() {
     this.getAllItems();
@@ -52,7 +62,46 @@ class App extends Component {
     const newUserMessages = [...this.state.userMessages];
     newUserMessages.push(e.target.value);
     this.setState({ userMessages: newUserMessages })
+    this.props.history.push('/messages')
   }
+/*----------- handle file change (image input) -----------------*/ 
+ handleFileChange(e) {
+    console.log('input Image:', e.target.value);
+    this.setState({
+      itemImage:
+        e.target
+          .value /**URL.createObjectURL(e.target.files[0]) is probably only for displaying a temp image */,
+    });
+  }
+
+  /*--- POST request to add item to server---- */
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const { itemTitle, itemDescription, itemCategory, itemImage, claimed, user_id } = this.state;
+    const body = { title: itemTitle, description: itemDescription, image: itemImage, category: itemCategory, status: claimed, user_id };
+    const url = '/item/add';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "Application/JSON"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(res => {
+        res.json()
+        // refresh state values
+        // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' }
+        const newItems = this.state.allItems.slice()
+        newItems.push(body)
+        this.setState({allItems: newItems})
+      })
+      .catch(err => {
+        console.log('AddItem Post error: ', err);
+        // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
+      });
+    }
+
   /*--- POST request to /LOG-IN---- */
   handleLoginSubmit(e) {
     e.preventDefault();
@@ -229,7 +278,9 @@ class App extends Component {
                 userAddress={this.state.userAddress}
                 userId={this.state.userId}
                 sendMessage={this.handleSendMessage}
-
+                handleSubmit={this.handleSubmit}
+                handleFileChange={this.handleFileChange}
+                handleChange={this.handleChange}
               />
             )}
           />

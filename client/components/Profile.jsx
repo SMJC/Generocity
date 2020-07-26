@@ -63,7 +63,7 @@ class Profile extends Component {
     } = this.state.userItems;
     const body = { itemTitle, itemDescription, itemCategory, itemImage, itemAddress };
   }
-
+    /*--- GET request to get all items from server---- */
   componentDidMount() {
     fetch('/item/' + this.props.userId)
       .then((res) => res.json())
@@ -87,6 +87,36 @@ class Profile extends Component {
       .catch((err) => console.log(err));
   }
 
+    /*--- POST request to edit item to server---- */
+    // handleSubmit(e) {
+    //   e.preventDefault();
+    //   const { itemTitle, itemDescription, itemCategory, itemImage, claimed, user_id } = this.state;
+    //   const body = { title: itemTitle, description: itemDescription, image: itemImage, category: itemCategory, status: claimed, user_id };
+    //   console.log('itemCategory', itemCategory);
+  
+    //   console.log('submit AddItem req body:', body);
+    //   const url = '/item/add';
+    //   fetch(url, {
+    //     method: 'POST',
+    //     headers: {
+    //       "Content-Type": "Application/JSON"
+    //     },
+    //     body: JSON.stringify(body)
+    //   })
+    //     .then(res => {
+    //       res.json()
+    //       // refresh state values
+    //       // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
+    //       // return to home page
+    //       // this.props.history.push('/')
+    //       console.log("res in AddItem", res);
+    //     })
+    //     .catch(err => {
+    //       console.log('AddItem Post error: ', err);
+    //       // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
+    //       this.props.history.push('/')
+    //     });
+    // }
   render() {
     const { userItems } = this.state;
     const { userFirstName, userLastName, userEmail, userId } = this.state;
@@ -95,10 +125,12 @@ class Profile extends Component {
         <>
           <section className="cardContainer">
             <ItemCard
-              name={item.itemTitle}
-              userid={item.itemUserId}
-              location={item.itemAddress}
-              status={item.itemStatus}
+            item={item}
+            inProfile={true}
+              // name={item.itemTitle}
+              // userid={item.itemUserId}
+              // location={item.itemAddress}
+              // status={item.itemStatus}
             />
             <section className="cardItem">
               <button
