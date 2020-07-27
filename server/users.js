@@ -5,7 +5,7 @@ const addUser = ({id, name, room}) => {
   // const room = room;
   const user = { id, name, room };
   users.push(user);
-  console.log(users)
+  // console.log(users)
   return {user};
 }
 

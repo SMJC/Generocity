@@ -4,20 +4,24 @@ import '../../scss/app.scss';
 
 
 let socket;
+/*------------ currentRoom needs to be updated to a string of both users names-------------*/ 
+/*------------ then in theory, each user would have a DB storage of all rooms -------------*/ 
 
 const Chat = (props) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const [room, setRoom] = useState('')
+  // const [room, setRoom] = useState('')
   const ENDPOINT = 'localhost:3000'
   const name = props.userEmail;
+  const room = props.currentRoom;
+
 
 
   useEffect(() => { // on join
-    const room = props.currentRoom;
+    // const room = props.currentRoom;
     const name = props.userEmail;
     socket = io(ENDPOINT)
-
+    console.log('newROOM joined');
     socket.emit('join', { name, room }, ({error}) => {
       console.log('error')
     })
@@ -25,6 +29,7 @@ const Chat = (props) => {
     return () => {
       socket.emit('disconnect')
       socket.off();
+      setMessages([]);
     }
   }, [ENDPOINT, props.currentRoom]);
 
