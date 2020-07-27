@@ -1,5 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
+import { withRouter } from 'react-router';
 import ItemCard from './ItemCard.jsx';
 import AddItem from './AddItem';
 import '../scss/app.scss';
@@ -8,104 +10,68 @@ class Home extends Component {
   constructor(props) {
     super(props);
     // tracks AddItem values
-    this.state = {
-      itemTitle: '',
-      itemDescription: '',
-      itemCategory: '',
-      itemImage: '',
-      claimed: false,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFileChange = this.handleFileChange.bind(this);
   }
 
   /*------TODO-----*/
 
   // define method to handle user input
   // tracks input for login/signup forms - assign input field a 'name' attribute that corresponds to state prop
-  handleChange(e) {
-    // add as onchange method
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  // handleChange(e) {
+  //   // add as onchange method
+  //   this.setState({ [e.target.name]: e.target.value });
+  // }
   // define method to send input to DB upon submission
   /*------SUBMIT IMAGE UPLOAD-----*/
 
-  handleFileChange(e) {
-    console.log('input Image:', e.target.value);
-    this.setState({
-      itemImage:
-        e.target
-          .value /**URL.createObjectURL(e.target.files[0]) is probably only for displaying a temp image */,
-    });
-  }
-
-
- /*--- POST request to add item to server---- */
-  handleSubmit(e) {
-    e.preventDefault();
-
-    const { itemTitle, itemDescription, itemCategory, itemImage } = this.state;
-    const body = { itemTitle, itemDescription, itemCategory, itemImage };
-    // body.itemOwner = this.props.userId; *dont need userId bc it will be in query string
-    // const userAddress = Object.assign({}, this.props.userAddress); 
-    // *dont need address bc server will send back the zip
-    // body.itemAddress = userAddress; // need to make a deep copy using obj. assign
-
-    console.log('submit AddItem req body:', body);
-    const url = '/item' + this.props.userId;
-      // fetch(url, {
-      //   method: 'POST',
-      //   headers: {
-      //     "Content-Type": "Application/JSON"
-      //   },
-      //   body: JSON.stringify(body)
-      // })
-      // .then(res => {
-      //   console.log("res in AddItem", res);
-      //   res.json();
-      //   // refresh state values
-      //   this.setState({itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: ''})
-      //   // return to home page
-      //   this.props.history.push('/')
-      // })
-      // .catch(err => {
-      //   console.log('AddItem Post error: ', err);
-      //   this.setState({itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: ''})
-      // });
-  }
+  // handleFileChange(e) {
+  //   console.log('input Image:', e.target.value);
+  //   this.setState({
+  //     itemImage:
+  //       e.target
+  //         .value /**URL.createObjectURL(e.target.files[0]) is probably only for displaying a temp image */,
+  //   });
+  // }
 
   render() {
     const { allItems } = this.props; // provides this.state.allItems as an array
-    console.log(allItems)
-    console.log(this.props.sendMessage)
+    console.log(allItems);
+    console.log(this.props.sendMessage);
     // define *map method to transform allItems into char cards
     const cards = allItems.map((item) => {
       return (
         <section className="cardContainer">
-            <ItemCard
-              name={item.itemTitle}
-              userid={item.itemUserId}
-              location={item.itemAddress}
-              status={item.itemStatus}
-              sendMessageButton={this.props.sendMessage}
-            />
+          <ItemCard
+            item={item}
+            // name={item.itemTitle}
+            // userid={item.itemUserId}
+            // location={item.itemAddress}
+            // status={item.itemStatus}
+            sendMessageButton={this.props.sendMessage}
+            inProfile={false}
+          />
         </section>
       );
     });
-
+    // if (this.state.redirect) {
+    //   return <Redirect to={this.state.redirect} />
+    // }
+    // onChange, value of option is sent by event handler to update state
     return (
       <>
-        {/* <!-- Button trigger modal --> */}
-        <button
-          type="button"
-          class="btn btn-dark addItemBtn"
-          data-toggle="modal"
-          data-target="#addItemModal"
-        >
-          Add Item
-        </button>
-
+        <section className="innerNav">
+          <section className="leftNav"></section>
+          <section className="rightNav">
+            {/* <!-- Button trigger modal --> */}
+            <button
+              type="button"
+              class="btn btn-dark addItemBtn"
+              data-toggle="modal"
+              data-target="#addItemModal"
+            >
+              Add Item
+            </button>
+          </section>
+        </section>
         {/* <!-- Modal --> */}
         <div
           class="modal fade"
@@ -127,23 +93,27 @@ class Home extends Component {
               </div>
               <div class="modal-body">
                 <AddItem
-                  handleChange={this.handleChange}
-                  handleSubmit={this.handleSubmit}
-                  handleFileChange={this.handleFileChange}
+                  handleChange={this.props.handleChange}
+                  handleSubmit={this.props.handleSubmit}
+                  handleFileChange={this.props.handleFileChange}
                 />
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  data-dismiss="modal"
+                  onClick={(e) => this.props.handleSubmit(e)}
+                >
                   Add Item
                 </button>
               </div>
             </div>
           </div>
         </div>
-        {/* CARDS DISPLAY */}
         <section className="itemsContainer">{cards}</section>
       </>
     );

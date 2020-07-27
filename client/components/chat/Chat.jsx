@@ -18,14 +18,15 @@ const Chat = (props) => {
     socketRef.current.on("your id", id => {
       setYourID(id); // server emits the 'your id' event and sends along an ID
     })
+    
     socketRef.current.on("message", (message) => {
-      console.log("here");
-      receivedMessage(message);
+   
+      receiveMessage(message);
     })
   }, []);
 
-  function receivedMessage(message) {
-    setMessages(oldMsgs => [...oldMsgs, message]);
+  function receiveMessage(message) {
+    setMessages((pastMessages) => [...pastMessages, message]);
   }
 
   function sendMessage(e) { // sends ID and body to server
