@@ -2,10 +2,9 @@
 const express = require('express');
 
 const UserController = require('../controllers/UserController.js');
-const CookieController = require('../controllers/CookieController.js')
+const CookieController = require('../controllers/CookieController.js');
+
 const router = express.Router();
-
-
 
 // GET all items that user has posted
 router.get('/:user_id', UserController.getUserItems, (req, res, next) => {
@@ -13,24 +12,25 @@ router.get('/:user_id', UserController.getUserItems, (req, res, next) => {
   res.status(200).json({ allItems: res.locals.items });
 });
 
-// // POST request to add user
-// router.post('/signup', UserController.createUser, CookieController.setSSIDCookie, SessionController.startSession,
-// (req, res) => {
-//    return res.status(200).json({isLoggedIn: true});
-// })
+// POST request to add user
+router.post('/signup', UserController.createUser, (req, res, next) => {
+  return res.status(200).json({ isLoggedIn: true });
+});
+
+// CookieController.setSSIDCookie, SessionController.startSession,
 
 // // handle login requests
-// router.post('/login',   
-// UserController.verifyUser,             
-// CookieController.setSSIDCookie,             
-// SessionController.startSession, 
-// (req, res) => { 
+// router.post('/login',
+// UserController.verifyUser,
+// CookieController.setSSIDCookie,
+// SessionController.startSession,
+// (req, res) => {
 //   return res.status(200).json({isLoggedIn: true})
 // })
 
 // // hanlde logout requests
-// // router.post('/:user_id/logout', 
-// //     SessionController.endSession, 
+// // router.post('/:user_id/logout',
+// //     SessionController.endSession,
 // //     (req, res) => {
 // //       return res.status(200).json({})
 // // })

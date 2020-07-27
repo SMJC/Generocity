@@ -13,9 +13,8 @@
 //     // store user ID in res.locals.ssid
 //     res.locals.ssid = data._id;
 
-    
 //     // console.log("setSSID response headers", res);
-//     return next(); 
+//     return next();
 //   })
 
 // }
