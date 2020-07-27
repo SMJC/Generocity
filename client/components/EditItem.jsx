@@ -1,4 +1,4 @@
-cdx    /* eslint-disable no-useless-constructor */
+/* eslint-disable no-useless-constructor */
 import React, { Component } from 'react';
 
 // eslint-disable-next-line react/prefer-stateless-function

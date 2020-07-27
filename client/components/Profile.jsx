@@ -14,9 +14,9 @@ class Profile extends Component {
       userItems: [],
     };
     // handleChange on edit of items
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFileChange = this.handleFileChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleFileChange = this.handleFileChange.bind(this);
     this.getUserItems = this.getUserItems.bind(this);
     //
   }
@@ -53,17 +53,17 @@ class Profile extends Component {
   }
 
   /*--- POST request to edit item to server---- */
-  handleSubmit(e) {
-    e.preventDefault();
-    const { itemTitle, itemDescription, itemCategory, itemImage, claimed, _id } = this.state;
-    const body = {
-      title: itemTitle,
-      description: itemDescription,
-      image: itemImage,
-      category: itemCategory,
-      status: claimed,
-      id: _id,
-    };
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   const { itemTitle, itemDescription, itemCategory, itemImage, claimed, _id } = this.state;
+  //   const body = {
+  //     title: itemTitle,
+  //     description: itemDescription,
+  //     image: itemImage,
+  //     category: itemCategory,
+  //     status: claimed,
+  //     id: _id,
+  //   };
 
     // console.log('submit EditItem req body:', body);
     // const itemId = this.state.itemId;
@@ -87,7 +87,7 @@ class Profile extends Component {
     //     // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
     //     this.props.history.push('/');
     //   });
-  }
+  //}
   render() {
     const { userItems } = this.state;
     const cards = userItems.map((item) => {
@@ -97,10 +97,10 @@ class Profile extends Component {
             <ItemCard
               item={item}
               inProfile={true}
-              // name={item.itemTitle}
-              // userid={item.itemUserId}
-              // location={item.itemAddress}
-              // status={item.itemStatus}
+              name={item.itemTitle}
+              userid={item.itemUserId}
+              location={item.itemAddress}
+              status={item.itemStatus}
             />
             <section className="cardItem">
               <button

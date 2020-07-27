@@ -23,7 +23,6 @@ class App extends Component {
       userPoints: '',
       userFirstName: 'Dave',
       userLastName: 'O\'Sullivan',
-      userId: '', 
       password: '',
       userStreet: '',
       userStreet2: '',
