@@ -30,22 +30,20 @@ router.post(
   UserController.verifyUser,
   CookieController.setSSIDCookie,
   SessionController.startSession,
-  (req, res) => {
+  (req, res, next) => {
     return res.status(200).json({ isLoggedIn: true });
   }
 );
 
 // check for session on componentDidMount
-router.get('/checksession', SessionController.isLoggedIn, (req, res) => {
+router.get('/checksession', SessionController.isLoggedIn, (req, res, next) => {
   // 200 response will provide client with user email
   return res.status(200).json({ email: res.locals.email });
 });
 
-// // hanlde logout requests
-// // router.post('/:user_id/logout',
-// //     SessionController.endSession,
-// //     (req, res) => {
-// //       return res.status(200).json({})
-// // })
+// hanlde logout requests
+// router.post('/logout', SessionController.endSession, (req, res, next) => {
+//   return res.status(200).json({ msg: 'ended session' });
+// });
 
 module.exports = router;

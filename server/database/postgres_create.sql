@@ -4,7 +4,7 @@ CREATE TABLE public.users (
 	"email" varchar UNIQUE NOT NULL,
 	"firstName" varchar (50) NOT NULL,
 	"lastName" varchar (50) NOT NULL,
-  "password" varchar ( 50 ) NOT NULL,
+  "password" varchar NOT NULL,
   "points" integer,
   "address_id" bigint NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("_id")
@@ -37,8 +37,8 @@ CONSTRAINT "sessions_pk" PRIMARY KEY ("_id")
 CREATE TABLE public.items (
   "_id" serial NOT NULL,
   "title" varchar NOT NULL,
-  "description" varchar (50) NOT NULL,
-  "image" varchar (50) NOT NULL,
+  "description" varchar (100) NOT NULL,
+  "image" varchar NOT NULL,
   "category" varchar NOT NULL,
   "status" BOOLEAN,
   "user_id" bigint NOT NULL,
