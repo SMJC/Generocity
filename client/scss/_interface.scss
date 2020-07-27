@@ -2,7 +2,6 @@ body {
   font-family: $nunito;
   font-size: $bodytext;
   line-height: 1.4em;
-  background-color: $paleWhite;
 }
 
 h5 {
@@ -60,7 +59,6 @@ h5 {
 /* Div rendered by App (sets background color for whole app) */
 .backgroundColor {
   height: 100vh;
-  z-index: -100;
 }
 /* .modal-content { ***need to change modal width!
   width: 800px;
