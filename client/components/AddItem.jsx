@@ -38,7 +38,7 @@ class AddItem extends Component {
                 className="form-control"
                 id="colFormLabel"
                 placeholder="Enter Item Description"
-                name="itemDescription"
+                name="itemDescription"x
                 onChange={(e) => this.props.handleChange(e)}
               ></input>
             </div>

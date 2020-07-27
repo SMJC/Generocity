@@ -36,6 +36,7 @@ class ItemCard extends Component {
             Location: Enter Location Here <br />
             Owner ID: {user_id}
             <br />
+            Category: {category}<br />
             Claimed: {claimed}
           </p>
         {messageButton}  

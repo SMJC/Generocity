@@ -43,6 +43,7 @@ class App extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this);
     this.getAllItems = this.getAllItems.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
     this.handleSendMessage = this.handleSendMessage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
@@ -73,6 +74,23 @@ class App extends Component {
           .value /**URL.createObjectURL(e.target.files[0]) is probably only for displaying a temp image */,
     });
   }
+
+    /*--- GET request to retrieve item filter by category---- */
+
+    handleFilterChange(e) {
+      e.preventDefault();
+      fetch('/item/category/Appliances')
+        .then((res) => res.json())
+        .then((res) => {
+          console.log('res', res);
+          // update state with array
+          this.setState({ allItems: res.items });
+        })
+        // this.props.history.push('/'))
+        .catch((err) => {
+          console.log('/item/category GET error: ', err);
+        });
+    }
 
   /*--- POST request to add item to server---- */
   handleSubmit(e) {
@@ -203,22 +221,8 @@ class App extends Component {
       });
   }
 
-  /*--- GET request to retrieve item filter by category---- */
-  handleSubmit(e) {
-    e.preventDefault();
 
-    fetch('/item/category/Appliances')
-      .then((res) => res.json())
-      .then((res) => {
-        console.log('res', res);
-        // update state with array
-        this.setState({ allItems: res.items });
-      })
-      // this.props.history.push('/'))
-      .catch((err) => {
-        console.log('/item/category/Appliances GET error: ', err);
-      });
-  }
+
   /*----------------To Do-------------------*/
 
   // define method to fetch user data from DB
@@ -324,6 +328,7 @@ class App extends Component {
                 handleSubmit={this.handleSubmit}
                 handleFileChange={this.handleFileChange}
                 handleChange={this.handleChange}
+                handleFilterChange={this.handleFilterChange}
               />
             )}
           />
