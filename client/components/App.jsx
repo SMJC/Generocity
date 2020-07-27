@@ -18,7 +18,7 @@ class App extends Component {
       // store most state in App component, make available to child components as props
       isloggedIn: false,
       allItems: [], // (each item is an object)
-      userEmail: 'default@gmail.com',
+      userEmail: 'Wonderpuss Photogenicus',
       userPoints: '',
       userFirstName: '',
       userLastName: '',
