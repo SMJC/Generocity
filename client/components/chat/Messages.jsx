@@ -8,9 +8,10 @@ const Messages = (props) => {
   const [currentRoom, setRoom] = useState('defaultRoom');
   
 
-  function changeRoom(e) {
-    e.preventDefault()
+  function changeRoom(e) { // move this to App????????
+    // e.preventDefault()
     setRoom(e.target.value);
+    // window.location.reload(false);
     // this method should also make a POST request to the server
   }
 
@@ -38,7 +39,7 @@ const Messages = (props) => {
             <button type="button" class="list-group-item list-group-item-action" value="Catherine" onClick={changeRoom}>
               Catherine
             </button>
-            <button type="button" class="list-group-item list-group-item-action" value="Serena" onClick={changeRoom}>Serena</button>
+            <Link onClick={changeRoom} to='/messages'> <button type="button" class="list-group-item list-group-item-action" value="Serena" >Serena</button></Link>
             <button type="button" class="list-group-item list-group-item-action" value="John" onClick={changeRoom}>John</button>
             <button type="button" class="list-group-item list-group-item-action" value="Michelle" onClick={changeRoom}>Michelle</button>
             <button type="button" class="list-group-item list-group-item-action" value="Erin" onClick={changeRoom} disabled>Erin</button>
@@ -48,7 +49,7 @@ const Messages = (props) => {
           {/* chat area */}
         <div className="col-9 chatContainer">
           {/*  need to make a POST request to create a new chatroom? */}
-          
+      
           <Chat currentRoom={currentRoom} userEmail={props.userEmail}/>
         </div>
 

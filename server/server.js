@@ -24,7 +24,7 @@ io.on("connection", socket => {
   socket.on('join', ({name, room}, callback) => {
     // name is user's name, room is the other user's name
     const { error, user } = addUser({ id: socket.id, name, room });
-    
+
     if(error) return callback(error);
 
     socket.join(user.room); // joins suer to room
@@ -36,6 +36,9 @@ io.on("connection", socket => {
     const user = getUser(socket.id);
 
     io.to(user.room).emit('message', {user: user.name, text: message});
+// SEND ROOMDATA TO ROOM ON CONNECTION
+    io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
+
     callback();
   })
   // socket.emit("your id", socket.id); // emits the 'your id' event to client, along with user's socket ID
@@ -47,7 +50,16 @@ io.on("connection", socket => {
   // socket.on("send message", body => { // when the client emits the 'send message' event, (i.e. when user sends msg), server emits the 'message' event
   //   io.emit("message", body) // the client listens for the 'message' event, and appends the 'body' (sent from server) to the DOM
   // })
-  socket.on('disconnect', () => {console.log('socket disconnected');})
+  socket.on('disconnect', () => {
+    console.log('socket disconnected')
+    const user = removeUser(socket.id);
+
+    if(user) {
+
+      io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
+      io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
+  }
+    ;})
 })
 // from client, send message to scoket when room is created
 

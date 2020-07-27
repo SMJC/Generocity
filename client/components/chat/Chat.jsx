@@ -6,7 +6,6 @@ import '../../scss/app.scss';
 let socket;
 
 const Chat = (props) => {
-  const [yourID, setYourID] = useState();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [room, setRoom] = useState('')
@@ -127,8 +126,8 @@ const Chat = (props) => {
          onChange={handleChange} 
      ></textarea> 
    </div>
-/   <button type="submit" class="btn btn-primary w-100 appButton" onClick={sendMessage}>Send Message</button>
-/ </form>
+   <button type="submit" class="btn btn-primary w-100 appButton" onClick={sendMessage}>Send Message</button>
+ </form>
 
     </div>
   );
