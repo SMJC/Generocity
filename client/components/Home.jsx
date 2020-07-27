@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { Redirect} from "react-router";
-import { withRouter } from "react-router";
+import { Redirect } from 'react-router';
+import { withRouter } from 'react-router';
 import ItemCard from './ItemCard.jsx';
 import AddItem from './AddItem';
 import '../scss/app.scss';
@@ -32,14 +32,10 @@ class Home extends Component {
   //   });
   // }
 
-
-
-  
-
   render() {
     const { allItems } = this.props; // provides this.state.allItems as an array
-    console.log(allItems)
-    console.log(this.props.sendMessage)
+    console.log(allItems);
+    console.log(this.props.sendMessage);
     // define *map method to transform allItems into char cards
     const cards = allItems.map((item) => {
       return (
@@ -61,16 +57,51 @@ class Home extends Component {
     // }
     return (
       <>
-        {/* <!-- Button trigger modal --> */}
-        <button
-          type="button"
-          class="btn btn-dark addItemBtn"
-          data-toggle="modal"
-          data-target="#addItemModal"
-        >
-          Add Item
-        </button>
+        <section className="innerNav">
+          <section className="leftNav">
+            <h6>sort by: </h6>
+            {/* <!-- Button trigger modal --> */}
+            <div class="dropdown show">
+              <a
+                class="btn btn-secondary dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Category
+              </a>
 
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">
+                  Appliances
+                </a>
+                <a class="dropdown-item" href="#">
+                  Sports
+                </a>
+                <a class="dropdown-item" href="#">
+                  Kitchen
+                </a>
+                <a class="dropdown-item" href="#">
+                  Clothing
+                </a>
+              </div>
+            </div>
+          </section>
+          <section className="rightNav">
+            {/* <!-- Button trigger modal --> */}
+            <button
+              type="button"
+              class="btn btn-dark addItemBtn"
+              data-toggle="modal"
+              data-target="#addItemModal"
+            >
+              Add Item
+            </button>
+          </section>
+        </section>
         {/* <!-- Modal --> */}
         <div
           class="modal fade"
@@ -101,7 +132,12 @@ class Home extends Component {
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary" data-dismiss="modal" onClick={(e) => this.props.handleSubmit(e)}>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  data-dismiss="modal"
+                  onClick={(e) => this.props.handleSubmit(e)}
+                >
                   Add Item
                 </button>
               </div>
@@ -113,6 +149,6 @@ class Home extends Component {
       </>
     );
   }
-};
+}
 
 export default Home;

@@ -9,6 +9,12 @@ h5 {
   font-weight: bold;
   font-size: 14px;
 }
+
+h6 {
+  vertical-align: middle;
+  margin-top: 5px;
+  margin-right: 10px;
+}
 /* items grid container */
 .itemsContainer {
   padding: 3rem;
@@ -40,8 +46,6 @@ h5 {
 }
 
 .addItemBtn {
-  margin-left: 90%;
-  margin-top: 20px;
   background-color: aliceblue;
   color: gray;
   border: none;
@@ -68,6 +72,18 @@ h5 {
   box-shadow: inset 0px 0px 20px 10px rgba(156, 156, 156, 0.178);
 }
 
+.innerNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 55px 0 55px;
+}
+
+.leftNav {
+  display: flex;
+  align-items: center;
+}
 .appButton {
   background-color: aliceblue;
   color: gray;
