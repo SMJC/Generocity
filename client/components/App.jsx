@@ -19,11 +19,10 @@ class App extends Component {
       // store most state in App component, make available to child components as props
       isloggedIn: false,
       allItems: [], // (each item is an object)
-      userEmail: '',
+      userEmail: 'test@email.com',
       userPoints: '',
-      userFirstName: '',
-      userLastName: '',
-      userId: '',
+      userFirstName: 'Dave',
+      userLastName: "O'Sullivan",
       password: '',
       userStreet: '',
       userStreet2: '',
@@ -37,7 +36,7 @@ class App extends Component {
       itemCategory: '',
       itemImage: '',
       claimed: false,
-      user_id: 1,
+      user_id: '2',
       redirect: null,
     };
     this.handleChange = this.handleChange.bind(this);
@@ -48,9 +47,11 @@ class App extends Component {
     this.handleSendMessage = this.handleSendMessage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
+    // this.checkSession = this.checkSession.bind(this);
   }
   componentDidMount() {
     this.getAllItems();
+    // this.checkSession();
   }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -82,6 +83,7 @@ class App extends Component {
     e.preventDefault();
     const categoryName = e.target.value;
     const url = '/filter/category/';
+    if (!categoryName) { this.getAllItems() }
     fetch(path.resolve(url, categoryName))
       .then((res) => res.json())
       .then((res) => {
@@ -116,15 +118,12 @@ class App extends Component {
     })
       .then((res) => {
         res.json();
-        // refresh state values
-        // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' }
         const newItems = this.state.allItems.slice();
         newItems.push(body);
         this.setState({ allItems: newItems });
       })
       .catch((err) => {
         console.log('AddItem Post error: ', err);
-        // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
       });
   }
 
@@ -202,6 +201,22 @@ class App extends Component {
     //   this.setState({})
     // });
   }
+
+  // ---------------------check session - called in componentDidMount------------------------------------
+  // checkSession() {
+  //   fetch('/api/checksession')
+  //   .then(res => res.json())
+  //   .then(res =>  {
+  //     // if (res.status === 200) {
+  //     console.log("res.email in checkSession", res.email)
+  //     // on successful status, update state email and pw
+  //     this.setState({email: [res.email], isLoggedIn: true})
+
+  //   })
+  //   .catch(err => {
+  //     console.log('/api/checksession GET error:', err);
+  //   })
+  // }
 
   /*--- GET Request for All items--- */
   getAllItems() {
@@ -303,10 +318,13 @@ class App extends Component {
                   }}
                 >
                   <option>Category</option>
-                  <option value="Sports">Sports</option>
-                  <option value="Kitchen">Kitchen</option>
-                  <option value="Clothing">Clothing</option>
+                  <option value="">All</option>
                   <option value="Appliances">Appliances</option>
+                  <option value="Plants">Plants</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Clothing">Clothing</option>
+                  <option value="Books">Books</option>
+                  <option value="Miscellaneous">Miscellaneous</option>
                 </select>
               </div>
             </ul>
@@ -336,7 +354,7 @@ class App extends Component {
                 userItems={this.state.userItems}
                 userEmail={this.state.userEmail}
                 userAddress={this.state.userAddress}
-                userId={this.state.userId}
+                userId={this.state.user_id}
                 sendMessage={this.handleSendMessage}
                 handleSubmit={this.handleSubmit}
                 handleFileChange={this.handleFileChange}
@@ -383,10 +401,10 @@ class App extends Component {
               <Profile
                 {...props}
                 allItems={this.state.allItems}
-                userId={this.state.userId}
-                // email={this.state.userEmail}
-                // firstName={this.state.userFirstName}
-                // lastName={this.state.userLastName}
+                userId={this.state.user_id}
+                userEmail={this.state.userEmail}
+                userFirstName={this.state.userFirstName}
+                userLastName={this.state.userLastName}
               />
             )}
           />

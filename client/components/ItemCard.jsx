@@ -1,27 +1,33 @@
+/* eslint-disable no-useless-constructor */
 import React, { Component } from 'react';
 import '../scss/app.scss';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class ItemCard extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
+  // eslint-disable-next-line lines-between-class-members
   render() {
     const { _id, category, description, image, status, title, user_id } = this.props.item;
     const { sendMessageButton } = this.props;
 
-    let claimed = status ? 'Yes' : 'No'
+    let claimed = status ? 'Yes' : 'No';
     let messageButton;
     if (this.props.inProfile) {
-      messageButton =  null
+      messageButton = null;
     } else {
-      messageButton =   <button type="button"
-      class="btn btn-primary appButton"
-      style={{ width: '100%' }}
-      value={user_id}
-      onClick={(e) => sendMessageButton(e)}
-    >Message Lister</button>
-    
+      messageButton = (
+        <button
+          type="button"
+          class="btn btn-primary appButton"
+          style={{ width: '100%' }}
+          value={user_id}
+          onClick={(e) => sendMessageButton(e)}
+        >
+          Message Lister
+        </button>
+      );
     }
     /* TO DO: 
       backend: add location
@@ -29,20 +35,21 @@ class ItemCard extends Component {
       questions: value on message listener button?
     */
     return (
-      <article className="itemCard">
-        <div className="itemText">
-          <h5>{title}</h5>
-          <p>
+      <div class="card">
+        <img class="card-img-top" src={image} />
+        <div class="card-body">
+          <h5 class="card-title">{title}</h5>
+          <p class="card-text">
             Location: Enter Location Here <br />
-            Owner ID: {user_id}
             <br />
-            Category: {category}<br />
+            {description} <br />
+            Category: {category}
+            <br />
             Claimed: {claimed}
           </p>
-        {messageButton}  
-        
+          {messageButton}
         </div>
-      </article>
+      </div>
     );
   }
 }
