@@ -114,7 +114,6 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        {/* CARDS DISPLAY */}
         <section className="itemsContainer">{cards}</section>
       </>
     );
