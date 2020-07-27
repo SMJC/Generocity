@@ -27,7 +27,7 @@ const Messages = (props) => {
     <div className="container msgContainer mx-10vh">
       <div className="row" style={{height: '100vh', width: '100vh'}}>
           {/* list of user messages */}
-        <div className="col-3 msgList " style={{marginTop: '30vh', fontSize: '1.2rem'}} >
+        <div className="col-3 msgList " style={{marginTop: '30vh', fontSize: '1.2rem', lineHeight: '1.1'}} >
 
           <div class="list-group-flush">
             {listOfRooms}

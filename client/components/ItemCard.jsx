@@ -18,7 +18,7 @@ class ItemCard extends Component {
       messageButton =   <button type="button"
       class="btn btn-primary appButton"
       style={{ width: '100%' }}
-      value={user_id}
+      value={title}
       onClick={(e) => sendMessageButton(e)}
     >Message Lister</button>
     

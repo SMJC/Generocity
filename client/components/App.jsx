@@ -60,7 +60,7 @@ class App extends Component {
   handleSendMessage(e) {
     e.preventDefault();
     const newUserMessages = [...this.state.msgRooms];
-    newUserMessages.push(e.target.value);
+    newUserMessages.push(`Owner of ${e.target.value}`);
     this.setState({ msgRooms: newUserMessages })
     this.props.history.push('/messages')
   }
