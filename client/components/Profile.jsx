@@ -1,43 +1,28 @@
 import React, { Component, Fragment } from 'react';
+
 import ItemCard from './ItemCard.jsx';
 import EditItem from './EditItem';
 import '../scss/app.scss'; // would each page have different css?
+
+const path = require('path');
 
 // create local state for get request of user profile
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: 'blah blah',
-      userFirstName: 'Captain',
-      userLastName: 'Marvel',
-      userEmail: 'email@emai.com',
-      userItems: [
-        {
-          itemTitle: 'basketball',
-          itemDescription: 'an orange ball',
-          itemCategory: 'sporting equipment',
-          itemImage: '',
-          itemAddress: '94087',
-          itemUserId: 'Reid',
-          itemStatus: 'false',
-        },
-        {
-          itemTitle: 'vase',
-          itemDescription: 'an old vase',
-          itemCategory: 'ornament',
-          itemImage: '',
-          itemAddress: '91054',
-          itemUserId: 'Dave',
-          itemStatus: 'true',
-        },
-      ],
+      userItems: [],
     };
     // handleChange on edit of items
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
+    this.getUserItems = this.getUserItems.bind(this);
     //
+  }
+
+  componentDidMount() {
+    this.getUserItems();
   }
 
   //handle event click
@@ -52,81 +37,66 @@ class Profile extends Component {
   }
   //
 
+  /*--- GET request to get all items from server---- */
+
+  getUserItems() {
+    const url = '/user/';
+    const id = this.props.userId;
+    fetch(path.resolve(url, id))
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({ userItems: res.allItems });
+      })
+      .catch((err) => {
+        console.log('/item/user GET error: ', err);
+      });
+  }
+
+  /*--- POST request to edit item to server---- */
   handleSubmit(e) {
     e.preventDefault();
-    const {
-      itemTitle,
-      itemDescription,
-      itemCategory,
-      itemImage,
-      itemAddress,
-    } = this.state.userItems;
-    const body = { itemTitle, itemDescription, itemCategory, itemImage, itemAddress };
-  }
-    /*--- GET request to get all items from server---- */
-  componentDidMount() {
-    fetch('/item/' + this.props.userId)
-      .then((res) => res.json())
-      .then((data) => {
-        return this.setState({
-          userId: data.userId,
-          userFirstName: data.userFirstName,
-          userLastName: data.userLastName,
-          userEmail: data.userEmail,
-        });
-      })
-      .catch((err) => console.log(err));
-  }
+    const { itemTitle, itemDescription, itemCategory, itemImage, claimed, _id } = this.state;
+    const body = {
+      title: itemTitle,
+      description: itemDescription,
+      image: itemImage,
+      category: itemCategory,
+      status: claimed,
+      id: _id,
+    };
 
-  componentDidUpdate() {
-    fetch('/item/:user')
-      .then((res) => res.json())
-      .then((data) => {
-        return this.setState({ userItems: data });
-      })
-      .catch((err) => console.log(err));
-  }
-
-    /*--- POST request to edit item to server---- */
-    // handleSubmit(e) {
-    //   e.preventDefault();
-    //   const { itemTitle, itemDescription, itemCategory, itemImage, claimed, user_id } = this.state;
-    //   const body = { title: itemTitle, description: itemDescription, image: itemImage, category: itemCategory, status: claimed, user_id };
-    //   console.log('itemCategory', itemCategory);
-  
-    //   console.log('submit AddItem req body:', body);
-    //   const url = '/item/add';
-    //   fetch(url, {
-    //     method: 'POST',
-    //     headers: {
-    //       "Content-Type": "Application/JSON"
-    //     },
-    //     body: JSON.stringify(body)
+    // console.log('submit EditItem req body:', body);
+    // const itemId = this.state.itemId;
+    // fetch(path.resolve('/items/', itemId), {
+    //   method: 'PATCH',
+    //   headers: {
+    //     'Content-Type': 'Application/JSON',
+    //   },
+    //   body: JSON.stringify(body),
+    // })
+    //   .then((res) => {
+    //     res.json();
+    //     // refresh state values
+    //     // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
+    //     // return to home page
+    //     // this.props.history.push('/')
+    //     console.log('res in AddItem', res);
     //   })
-    //     .then(res => {
-    //       res.json()
-    //       // refresh state values
-    //       // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
-    //       // return to home page
-    //       // this.props.history.push('/')
-    //       console.log("res in AddItem", res);
-    //     })
-    //     .catch(err => {
-    //       console.log('AddItem Post error: ', err);
-    //       // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
-    //       this.props.history.push('/')
-    //     });
-    // }
+    //   .catch((err) => {
+    //     console.log('AddItem Post error: ', err);
+    //     // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
+    //     this.props.history.push('/');
+    //   });
+  }
   render() {
     const { userItems } = this.state;
-    const { userFirstName, userLastName, userEmail, userId } = this.state;
     const cards = userItems.map((item) => {
       return (
         <>
           <section className="cardContainer">
             <ItemCard
-            item={item}
-            inProfile={true}
+              item={item}
+              inProfile={true}
               // name={item.itemTitle}
               // userid={item.itemUserId}
               // location={item.itemAddress}
@@ -187,9 +157,8 @@ class Profile extends Component {
         </div>
 
         <section className="userProfile">
-          {userFirstName} {userLastName}
-          <p>User Email: {userEmail}</p>
-          <p>User Id: {userId}</p>
+          {this.props.userFirstName} {this.props.userLastName}
+          <p>User Email: {this.props.userEmail}</p>
         </section>
         <section className="itemsContainer">{cards}</section>
       </>

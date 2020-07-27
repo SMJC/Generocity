@@ -34,7 +34,6 @@ class ItemCard extends Component {
           <h5>{title}</h5>
           <p>
             Location: Enter Location Here <br />
-            Owner ID: {user_id}
             <br />
             Category: {category}<br />
             Claimed: {claimed}
