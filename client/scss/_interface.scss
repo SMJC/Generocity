@@ -22,21 +22,12 @@ h6 {
   grid-template-columns: 20fr 20fr 20fr 20fr 20fr; /*can add a media query for smaller screens/responsivity*/
   /* min-width: 950px; */
 }
-
 /* card container: which includes everything within a card */
-.cardContainer {
-  justify-content: flex-start;
-  margin: 0.5rem;
-  max-width: 300px;
-  height: auto;
-  box-shadow: 1px 1px 7px rgba(22, 22, 22, 0.329);
-  background-color: $nearlyWhite;
+.card {
+  margin: 10px;
 }
 
 /* invidivual section within a card */
-.itemText {
-  margin: 25px;
-}
 
 /* user profile container */
 .userProfile {

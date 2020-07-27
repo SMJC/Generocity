@@ -1,5 +1,7 @@
+/* eslint-disable no-useless-constructor */
 import React, { Component } from 'react';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class EditItem extends Component {
   constructor(props) {
     super(props);
