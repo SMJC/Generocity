@@ -3,6 +3,7 @@ const express = require('express');
 
 const UserController = require('../controllers/UserController.js');
 const CookieController = require('../controllers/CookieController.js');
+const SessionController = require('../controllers/SessionController.js');
 
 const router = express.Router();
 
@@ -17,12 +18,11 @@ router.post(
   '/signup',
   UserController.createUser,
   CookieController.setSSIDCookie,
+  SessionController.startSession,
   (req, res, next) => {
     return res.status(200).json({ isLoggedIn: true });
   }
 );
-
-//  SessionController.startSession,
 
 // // handle login requests
 // router.post('/login',
