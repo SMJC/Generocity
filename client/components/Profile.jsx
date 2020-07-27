@@ -65,35 +65,35 @@ class Profile extends Component {
   //     id: _id,
   //   };
 
-    // console.log('submit EditItem req body:', body);
-    // const itemId = this.state.itemId;
-    // fetch(path.resolve('/items/', itemId), {
-    //   method: 'PATCH',
-    //   headers: {
-    //     'Content-Type': 'Application/JSON',
-    //   },
-    //   body: JSON.stringify(body),
-    // })
-    //   .then((res) => {
-    //     res.json();
-    //     // refresh state values
-    //     // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
-    //     // return to home page
-    //     // this.props.history.push('/')
-    //     console.log('res in AddItem', res);
-    //   })
-    //   .catch((err) => {
-    //     console.log('AddItem Post error: ', err);
-    //     // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
-    //     this.props.history.push('/');
-    //   });
+  // console.log('submit EditItem req body:', body);
+  // const itemId = this.state.itemId;
+  // fetch(path.resolve('/items/', itemId), {
+  //   method: 'PATCH',
+  //   headers: {
+  //     'Content-Type': 'Application/JSON',
+  //   },
+  //   body: JSON.stringify(body),
+  // })
+  //   .then((res) => {
+  //     res.json();
+  //     // refresh state values
+  //     // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
+  //     // return to home page
+  //     // this.props.history.push('/')
+  //     console.log('res in AddItem', res);
+  //   })
+  //   .catch((err) => {
+  //     console.log('AddItem Post error: ', err);
+  //     // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
+  //     this.props.history.push('/');
+  //   });
   //}
   render() {
     const { userItems } = this.state;
     const cards = userItems.map((item) => {
       return (
         <>
-          <section className="cardContainer">
+          <section className="card-deck">
             <ItemCard
               item={item}
               inProfile={true}
@@ -102,7 +102,7 @@ class Profile extends Component {
               location={item.itemAddress}
               status={item.itemStatus}
             />
-            <section className="cardItem">
+            {/* <section className="cardItem">
               <button
                 type="button"
                 class="btn btn-dark editItemBtn"
@@ -111,7 +111,7 @@ class Profile extends Component {
               >
                 Edit Item
               </button>
-            </section>
+            </section> */}
           </section>
         </>
       );
@@ -157,8 +157,10 @@ class Profile extends Component {
         </div>
 
         <section className="userProfile">
-          {this.props.userFirstName} {this.props.userLastName}
-          <p>User Email: {this.props.userEmail}</p>
+          <h4>Welcome to Your Profile, {this.props.userFirstName}!</h4>
+          <p>Name: {this.props.userFirstName} {this.props.userLastName}< br/>
+          User Email: {this.props.userEmail}</p>
+          <h5>Your listed items:</h5>
         </section>
         <section className="itemsContainer">{cards}</section>
       </>

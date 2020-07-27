@@ -39,7 +39,8 @@ class AddItem extends Component {
                 className="form-control"
                 id="colFormLabel"
                 placeholder="Enter Item Description"
-                name="itemDescription"x
+                name="itemDescription"
+                x
                 onChange={(e) => this.props.handleChange(e)}
               ></input>
             </div>
@@ -61,10 +62,12 @@ class AddItem extends Component {
                 onChange={(e) => this.props.handleChange(e)}
               >
                 <option>Select a Category</option>
-                <option>Sports</option>
-                <option>Kitchen</option>
-                <option>Clothing</option>
                 <option>Appliances</option>
+                <option>Plants</option>
+                <option>Sports</option>
+                <option>Clothing</option>
+                <option>Books</option>
+                <option>Miscellaneous</option>
               </select>
             </div>
           </div>
@@ -89,13 +92,21 @@ class AddItem extends Component {
           <div className="input-group mb-3">
             <div className="custom-file">
               <input
-                type="file"
+                type="text"
+                className="form-control form-control-lg"
+                id="colFormLabelLg"
+                placeholder="Image Here"
+                name="itemImage"
+                onChange={(e) => this.props.handleFileChange(e)}
+              ></input>
+              {/* <input
+                type="text"
                 className="custom-file-input"
                 id="inputGroupFile02"
                 name="itemImage"
                 onChange={(e) => this.props.handleFileChange(e)}
-              ></input>
-              <label
+              ></input> */}
+              {/* <label
                 className="custom-file-label"
                 htmlFor="inputGroupFile02"
                 aria-describedby="inputGroupFileAddon02"
@@ -106,7 +117,7 @@ class AddItem extends Component {
             <div className="input-group-append">
               <span className="input-group-text" id="inputGroupFileAddon02">
                 Upload
-              </span>
+              </span> */}
             </div>
           </div>
         </form>

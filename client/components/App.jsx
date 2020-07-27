@@ -22,7 +22,7 @@ class App extends Component {
       userEmail: 'test@email.com',
       userPoints: '',
       userFirstName: 'Dave',
-      userLastName: 'O\'Sullivan',
+      userLastName: "O'Sullivan",
       password: '',
       userStreet: '',
       userStreet2: '',
@@ -83,6 +83,7 @@ class App extends Component {
     e.preventDefault();
     const categoryName = e.target.value;
     const url = '/filter/category/';
+    if (!categoryName){this.getAllItems()}
     fetch(path.resolve(url, categoryName))
       .then((res) => res.json())
       .then((res) => {
@@ -237,8 +238,6 @@ class App extends Component {
       });
   }
 
-
-
   /*----------------To Do-------------------*/
 
   // define method to fetch user data from DB
@@ -322,10 +321,13 @@ class App extends Component {
                   }}
                 >
                   <option>Category</option>
-                  <option value="Sports">Sports</option>
-                  <option value="Kitchen">Kitchen</option>
-                  <option value="Clothing">Clothing</option>
+                  <option value="">All</option>
                   <option value="Appliances">Appliances</option>
+                  <option value="Plants">Plants</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Clothing">Clothing</option>
+                  <option value="Books">Books</option>
+                  <option value="Miscellaneous">Miscellaneous</option>
                 </select>
               </div>
             </ul>
@@ -369,7 +371,7 @@ class App extends Component {
             path="/additem"
             render={(props) => (
               <AddItem
-                {...props} // add props here                
+                {...props} // add props here
               />
             )}
           />
