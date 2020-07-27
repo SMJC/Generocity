@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const path = require('path');
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../scss/app.scss';
 import SignUp from './SignUp.jsx';
@@ -75,22 +76,23 @@ class App extends Component {
     });
   }
 
-    /*--- GET request to retrieve item filter by category---- */
+  /*--- GET request to retrieve item filter by category---- */
 
-    handleFilterChange(e) {
-      e.preventDefault();
-      fetch('/item/category/Appliances')
-        .then((res) => res.json())
-        .then((res) => {
-          console.log('res', res);
-          // update state with array
-          this.setState({ allItems: res.items });
-        })
-        // this.props.history.push('/'))
-        .catch((err) => {
-          console.log('/item/category GET error: ', err);
-        });
-    }
+  handleFilterChange(e) {
+    e.preventDefault();
+
+    const url = '/item/category/';
+    fetch(path.resolve(url, e.target.value))
+      .then((res) => res.text())
+      .then((res) => {
+        console.log('res', res);
+        // res is currently in HTML. Check routing.
+        // this.setState({ allItems: res.items });
+      })
+      .catch((err) => {
+        console.log('/item/category GET error: ', err);
+      });
+  }
 
   /*--- POST request to add item to server---- */
   handleSubmit(e) {
@@ -221,8 +223,6 @@ class App extends Component {
       });
   }
 
-
-
   /*----------------To Do-------------------*/
 
   // define method to fetch user data from DB
@@ -296,6 +296,23 @@ class App extends Component {
                   </a>
                 </div>
               </li> */}
+              <div id="filterBox">
+                <select
+                  className="form-control"
+                  id="exampleFormControlSelect1"
+                  name="itemCategory"
+                  onChange={(e) => {
+                    this.handleFilterChange(e);
+                    console.log('Category: ', e.target.value);
+                  }}
+                >
+                  <option>Category</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Kitchen">Kitchen</option>
+                  <option value="Clothing">Clothing</option>
+                  <option value="Appliances">Appliances</option>
+                </select>
+              </div>
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">

@@ -55,39 +55,11 @@ class Home extends Component {
     // if (this.state.redirect) {
     //   return <Redirect to={this.state.redirect} />
     // }
+    // onChange, value of option is sent by event handler to update state
     return (
       <>
         <section className="innerNav">
-          <section className="leftNav">
-            <h6>sort by: </h6>
-            <div onChange={(e) => this.props.handleFilterChange(e)} class="dropdown show">
-              <a
-                class="btn btn-secondary dropdown-toggle"
-                href="#"
-                role="button"
-                id="dropdownMenuLink"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Category
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="/item/category/Appliances">
-                  Appliances
-                </a>
-                <a class="dropdown-item" href="/item/category/Sports">
-                  Sports
-                </a>
-                <a class="dropdown-item" href="/item/category/Kitchen">
-                  Kitchen
-                </a>
-                <a class="dropdown-item" href="/item/category/Clothing">
-                  Clothing
-                </a>
-              </div>
-            </div>
-          </section>
+          <section className="leftNav"></section>
           <section className="rightNav">
             {/* <!-- Button trigger modal --> */}
             <button
