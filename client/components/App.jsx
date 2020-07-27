@@ -116,15 +116,12 @@ class App extends Component {
     })
       .then((res) => {
         res.json();
-        // refresh state values
-        // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' }
         const newItems = this.state.allItems.slice();
         newItems.push(body);
         this.setState({ allItems: newItems });
       })
       .catch((err) => {
         console.log('AddItem Post error: ', err);
-        // this.setState({ itemTitle: '', itemDescription: '', itemCategory: '', itemImage: '', itemAddress: '' })
       });
   }
 
@@ -384,9 +381,9 @@ class App extends Component {
                 {...props}
                 allItems={this.state.allItems}
                 userId={this.state.userId}
-                // email={this.state.userEmail}
-                // firstName={this.state.userFirstName}
-                // lastName={this.state.userLastName}
+              // email={this.state.userEmail}
+              // firstName={this.state.userFirstName}
+              // lastName={this.state.userLastName}
               />
             )}
           />
