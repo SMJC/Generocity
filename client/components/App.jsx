@@ -18,7 +18,7 @@ class App extends Component {
       // store most state in App component, make available to child components as props
       isloggedIn: false,
       allItems: [], // (each item is an object)
-      userEmail: '',
+      userEmail: 'default@gmail.com',
       userPoints: '',
       userFirstName: '',
       userLastName: '',
@@ -29,7 +29,7 @@ class App extends Component {
       userCity: '',
       userState: '',
       userZip: '',
-      userMessages: ['messager1', 'messager2'],
+      msgRooms: ['messager1', 'messager2'],
       //  item state
       itemTitle: '',
       itemDescription: '',
@@ -59,9 +59,9 @@ class App extends Component {
   // it also needs to redirect to Messages component
   handleSendMessage(e) {
     e.preventDefault();
-    const newUserMessages = [...this.state.userMessages];
+    const newUserMessages = [...this.state.msgRooms];
     newUserMessages.push(e.target.value);
-    this.setState({ userMessages: newUserMessages })
+    this.setState({ msgRooms: newUserMessages })
     this.props.history.push('/messages')
   }
 /*----------- handle file change (image input) -----------------*/ 
@@ -348,7 +348,8 @@ class App extends Component {
             render={(props) => (
               <Messages
                 {...props}
-                userMessages={this.state.userMessages}
+                msgRooms={this.state.msgRooms}
+                userEmail={this.state.userEmail}
               />
             )}
           />

@@ -5,7 +5,6 @@ const userRouter = require('./routes/userRouter.js');
 const filterRouter = require('./routes/filterRouter.js');
 const http = require('http')
 const socket = require('socket.io')
-
 // require dotenv to hide server uri
 require('dotenv').config();
 
@@ -14,20 +13,41 @@ const PORT = 3000;
 const server = http.createServer(app);
 const io = socket(server);
 
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
+
 // Handle Parsing of Request Body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 io.on("connection", socket => {
-  socket.emit("your id", socket.id); // emits the 'your id' event to client, along with user's socket ID
+  console.log('new socket connection!', socket.id)
+  socket.on('join', ({name, room}, callback) => {
+    // name is user's name, room is the other user's name
+    const { error, user } = addUser({ id: socket.id, name, room });
+    
+    if(error) return callback(error);
+
+    socket.join(user.room); // joins suer to room
+    socket.emit('message', {user: 'admin', text: `${user.name} has joined the room ${user.room}`})
+    socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
+  })
+
+  socket.on('sendMessage', (message, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('message', {user: user.name, text: message});
+    callback();
+  })
+  // socket.emit("your id", socket.id); // emits the 'your id' event to client, along with user's socket ID
   //socket.client
   // socket.join('some room');
   // socket.on('room', (room) => {
   //   socket.join(room)
   // })
-  socket.on("send message", body => { // when the client emits the 'send message' event, (i.e. when user sends msg), server emits the 'message' event
-    io.emit("message", body) // the client listens for the 'message' event, and appends the 'body' (sent from server) to the DOM
-  })
+  // socket.on("send message", body => { // when the client emits the 'send message' event, (i.e. when user sends msg), server emits the 'message' event
+  //   io.emit("message", body) // the client listens for the 'message' event, and appends the 'body' (sent from server) to the DOM
+  // })
+  socket.on('disconnect', () => {console.log('socket disconnected');})
 })
 // from client, send message to scoket when room is created
 
