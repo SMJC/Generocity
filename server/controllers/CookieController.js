@@ -1,22 +1,25 @@
-// const cookieController = {};
-// const User = require('../models/userModel');
+const db = require('../models/Models');
 
-// cookieController.setSSIDCookie = (req, res, next) => {
-//   // console.log("from setssid testing login");
-//   const { email, password } = req.body;
-//   console.log("email in setSSIDcookie", email);
-//   User.findOne({email: email}, (err, data) => {
-//     if (err) return next({log: "Invalid query in SSIDCookie - can't find username"});
-//     // data._id is the mongoDB id of the user
-//     console.log("DATA in setSSIDcookie",data);
-//     res.cookie('ssid', data._id, {httpOnly: true})
-//     // store user ID in res.locals.ssid
-//     res.locals.ssid = data._id;
+const CookieController = {};
 
-//     // console.log("setSSID response headers", res);
-//     return next();
-//   })
+// getUserByEmail
 
-// }
+CookieController.setSSIDCookie = async (req, res, next) => {
+  const { email, password } = req.body;
+  try {
+    const findUser = `SELECT _id, email, password FROM users WHERE (email = '${email}');`;
+    const user = await db.query(findUser);
+    console.log('user.rows', user.rows);
 
-// module.exports = cookieController;
+    if (user) {
+      res.cookie('ssid', user.rows[0]._id, { httpOnly: true });
+      res.locals.ssid = user.rows[0]._id;
+      console.log('res.locals', res.locals);
+      return next();
+    }
+  } catch (e) {
+    return next(e);
+  }
+};
+
+module.exports = CookieController;

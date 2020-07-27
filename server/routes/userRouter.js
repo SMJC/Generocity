@@ -13,11 +13,16 @@ router.get('/:user_id', UserController.getUserItems, (req, res, next) => {
 });
 
 // POST request to add user
-router.post('/signup', UserController.createUser, (req, res, next) => {
-  return res.status(200).json({ isLoggedIn: true });
-});
+router.post(
+  '/signup',
+  UserController.createUser,
+  CookieController.setSSIDCookie,
+  (req, res, next) => {
+    return res.status(200).json({ isLoggedIn: true });
+  }
+);
 
-// CookieController.setSSIDCookie, SessionController.startSession,
+//  SessionController.startSession,
 
 // // handle login requests
 // router.post('/login',

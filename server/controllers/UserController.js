@@ -5,7 +5,7 @@ const UserController = {};
 UserController.getUserItems = (req, res, next) => {
   // console.log(`req.params.id`, req.params.user);
   const { user_id } = req.params;
-  console.log('user', user_id);
+  // console.log('user', user_id);
 
   const query = `SELECT u._id, u.email, I.*
   FROM public.users u
@@ -24,10 +24,8 @@ UserController.getUserItems = (req, res, next) => {
   });
 };
 
-/** ------------------*From michelle's solo - need to edit--------------------------------- */
 UserController.createUser = async (req, res, next) => {
   const { email, password, firstName, lastName, zipCode, street, city, state } = req.body;
-  console.log(req.body);
   try {
     // if user is in database, send res of user exists
     const findUser = `SELECT email, password FROM users WHERE (email = '${email}');`;
@@ -51,7 +49,7 @@ UserController.createUser = async (req, res, next) => {
 
     const newUser = await db.query(createUserQuery);
 
-    console.log('successfully create email', email);
+    // console.log('successfully create email', email);
     // send data back to client
 
     return next();
