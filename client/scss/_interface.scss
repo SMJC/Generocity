@@ -2,13 +2,18 @@ body {
   font-family: $nunito;
   font-size: $bodytext;
   line-height: 1.4em;
-  background-color: $paleWhite;
 }
 
 h5 {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 14px;
+}
+
+h6 {
+  vertical-align: middle;
+  margin-top: 5px;
+  margin-right: 10px;
 }
 /* items grid container */
 .itemsContainer {
@@ -41,8 +46,6 @@ h5 {
 }
 
 .addItemBtn {
-  margin-left: 90%;
-  margin-top: 20px;
   background-color: aliceblue;
   color: gray;
   border: none;
@@ -60,16 +63,35 @@ h5 {
 /* Div rendered by App (sets background color for whole app) */
 .backgroundColor {
   height: 100vh;
-  z-index: -100;
 }
 /* .modal-content { ***need to change modal width!
   width: 800px;
 } */
 
+#filterBox {
+  margin-left: 20px;
+}
+
+#filterBox select {
+  font-size: $bodytext
+}
+
 .navbar-light {
   box-shadow: inset 0px 0px 20px 10px rgba(156, 156, 156, 0.178);
 }
 
+.innerNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 55px 0 55px;
+}
+
+.leftNav {
+  display: flex;
+  align-items: center;
+}
 .appButton {
   background-color: aliceblue;
   color: gray;

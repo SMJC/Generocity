@@ -14,14 +14,14 @@ class AddItem extends Component {
           {/** ------- Item Title -------- */}
           <div className="form-group row">
             <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg">
-              Item Title
+              Item Name
             </label>
             <div className="col-sm-10">
               <input
                 type="email"
                 className="form-control form-control-lg"
                 id="colFormLabelLg"
-                placeholder="col-form-label-lg"
+                placeholder="Enter Item Name"
                 name="itemTitle"
                 onChange={(e) => this.props.handleChange(e)}
               ></input>
@@ -37,8 +37,8 @@ class AddItem extends Component {
                 type="email"
                 className="form-control"
                 id="colFormLabel"
-                placeholder="Tell us about the item!"
-                name="itemDescription"
+                placeholder="Enter Item Description"
+                name="itemDescription"x
                 onChange={(e) => this.props.handleChange(e)}
               ></input>
             </div>
@@ -59,7 +59,7 @@ class AddItem extends Component {
                 name="itemCategory"
                 onChange={(e) => this.props.handleChange(e)}
               >
-                <option>Furniture</option>
+                <option>Select a Category</option>
                 <option>Sports</option>
                 <option>Kitchen</option>
                 <option>Clothing</option>

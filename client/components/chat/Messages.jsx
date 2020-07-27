@@ -6,10 +6,15 @@ import Chat from './Chat.jsx'
 
 const Messages = (props) => {
   const [currentMessenger, setMessenger] = useState('');
+  
+
   function changeMessenger(e) {
     e.preventDefault()
     setMessenger(e.target.value);
+    // this method should also make a POST request to the server
   }
+
+
   const listOfMessages = props.userMessages.map(user => {
     return (
     <button type="button" class="list-group-item list-group-item-action" value={user} onClick={changeMessenger}>{user}</button>

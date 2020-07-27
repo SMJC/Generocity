@@ -9,7 +9,8 @@ const router = express.Router();
 
 // GET all items that user has posted
 router.get('/:user_id', UserController.getUserItems, (req, res, next) => {
-  res.status(200).json(res.locals);
+  console.log('res.locals.items', res.locals.items);
+  res.status(200).json({ allItems: res.locals.items });
 });
 
 
