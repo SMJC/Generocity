@@ -48,9 +48,11 @@ class App extends Component {
     this.handleSendMessage = this.handleSendMessage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
+    // this.checkSession = this.checkSession.bind(this);
   }
   componentDidMount() {
     this.getAllItems();
+    // this.checkSession();
   }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -200,6 +202,22 @@ class App extends Component {
     // });
   }
 
+  // ---------------------check session - called in componentDidMount------------------------------------
+  // checkSession() {
+  //   fetch('/api/checksession')
+  //   .then(res => res.json())
+  //   .then(res =>  {
+  //     // if (res.status === 200) {
+  //     console.log("res.email in checkSession", res.email)
+  //     // on successful status, update state email and pw
+  //     this.setState({email: [res.email], isLoggedIn: true})
+
+  //   })
+  //   .catch(err => {
+  //     console.log('/api/checksession GET error:', err);
+  //   })
+  // }
+
   /*--- GET Request for All items--- */
   getAllItems() {
     // call in componentDidMount
@@ -216,6 +234,8 @@ class App extends Component {
         console.log('/item/all GET error: ', err);
       });
   }
+
+
 
   /*----------------To Do-------------------*/
 
