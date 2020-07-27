@@ -110,16 +110,6 @@ const Chat = (props) => {
              )
         })} 
 
-
-    
-      {/* <Form onSubmit={sendMessage}>
-        <TextArea 
-        value={message} 
-        onChange={handleChange} 
-        placeholder="Say something..." />
-        <Button>Send</Button>
-      </Form>  */}
-
       <form>
     <div class="form-group">
      <label for="exampleFormControlTextarea1"></label>
@@ -131,7 +121,7 @@ const Chat = (props) => {
          onChange={handleChange} 
      ></textarea> 
    </div>
-   <button type="submit" class="btn btn-primary w-100 appButton" onClick={sendMessage}>Send Message</button>
+   <button type="submit" class="btn btn-primary w-100 appButton loginAndSignUpBtn" onClick={sendMessage}>Send Message</button>
  </form>
 
     </div>

@@ -18,7 +18,7 @@ const Messages = (props) => {
 
   const listOfRooms = props.msgRooms.map(user => {
     return (
-    <button type="button" class="list-group-item list-group-item-action" value={user} onClick={changeRoom}>{user}</button>
+    <button type="button" class="list-group-item list-group-item-action" value={user} onClick={changeRoom} style={{height: '6vh'}}>{user}</button>
     )
   })
   console.log(listOfRooms);
@@ -29,20 +29,20 @@ const Messages = (props) => {
   // buttons sould setMessenger to socketID
   // pass down currentMessenger to Chat component
   return ( 
-    <div className="container msgContainer">
-      <div className="row" style={{height: '100vh'}}>
+    <div className="container msgContainer mx-10vh">
+      <div className="row" style={{height: '100vh', width: '100vh'}}>
           {/* list of user messages */}
-        <div className="col-3 msgList " style={{marginTop: '30vh'}} >
+        <div className="col-3 msgList " style={{marginTop: '30vh', fontSize: '1.2rem'}} >
 
           <div class="list-group-flush">
             {listOfRooms}
-            <button type="button" class="list-group-item list-group-item-action" value="Catherine" onClick={changeRoom}>
+            <button type="button" class="list-group-item list-group-item-action" value="Catherine" style={{height: '6vh'}} onClick={changeRoom}>
               Catherine
             </button>
-            <Link onClick={changeRoom} to='/messages'> <button type="button" class="list-group-item list-group-item-action" value="Serena" >Serena</button></Link>
-            <button type="button" class="list-group-item list-group-item-action" value="John" onClick={changeRoom}>John</button>
-            <button type="button" class="list-group-item list-group-item-action" value="Michelle" onClick={changeRoom}>Michelle</button>
-            <button type="button" class="list-group-item list-group-item-action" value="Erin" onClick={changeRoom} disabled>Erin</button>
+            <button type="button" class="list-group-item list-group-item-action" value="Serena" style={{height: '6vh'}} >Serena</button>
+            <button type="button" class="list-group-item list-group-item-action" value="John" onClick={changeRoom} style={{height: '6vh'}}>John</button>
+            <button type="button" class="list-group-item list-group-item-action" value="Michelle" onClick={changeRoom} style={{height: '6vh'}}>Michelle</button>
+            <button type="button" class="list-group-item list-group-item-action" value="Erin" onClick={changeRoom} style={{height: '6vh'}}>Erin</button>
           </div>
           </div>
 

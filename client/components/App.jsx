@@ -29,7 +29,7 @@ class App extends Component {
       userCity: '',
       userState: '',
       userZip: '',
-      msgRooms: ['messager1', 'messager2'],
+      msgRooms: ['Bridget', 'Scott'],
       //  item state
       itemTitle: '',
       itemDescription: '',
@@ -190,8 +190,8 @@ class App extends Component {
       <div className="backgroundColor" style={{ backgroundColor: '#FDFDFD' }}>
         <nav class="navbar navbar-expand-md navbar-light" style={{ backgroundColor: '#e4f3fe' }}>
           <NavLink to="/" className="nav-brand">
-            <a className="navbar-brand" href="#">
-              generocity
+            <a className="navbar-brand" href="#" style={{letterSpacing: '2px'}}>
+              genero<span style={{color: 'gray', letterSpacing: '3px'}}>city</span>
             </a>
           </NavLink>
           <button
@@ -208,20 +208,16 @@ class App extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
+      
               <li className="nav-item active">
-                <NavLink to="/chat" className="nav-link">
-                  Chat
-                </NavLink>
-              </li>
-              <li className="nav-item active">
-                <NavLink to="/messages" className="nav-link">
-                  Messages
+                <NavLink to="/profile" className="nav-link">
+                  Profile
                 </NavLink>
               </li>
               <li className="nav-item">
                 {/* <a class="nav-link" href="#">Link</a> */}
-                <NavLink to="/profile" className="nav-link">
-                  Profile
+                <NavLink to="/messages" className="nav-link">
+                  Messages
                 </NavLink>
               </li>
               {/* <li className="nav-item dropdown">

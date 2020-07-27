@@ -13,7 +13,7 @@ class SignUp extends Component {
 
     return ( 
 
-      <div className="container">
+      <div className="container loginAndSignUp">
          <div class="row" style={{height: '15vh'}}></div>
     <div class="col">
     <h3 style={{textAlign: 'center', margin: '30px'}}>join the community</h3>
@@ -61,7 +61,7 @@ class SignUp extends Component {
           </label>
         </div>
       </div>
-      <button type="submit" class="btn btn-dark" onClick={(e) => this.props.handleSignUpSubmit(e)}>Sign Up</button>
+      <button type="submit" class="btn btn-dark loginAndSignUpBtn" onClick={(e) => this.props.handleSignUpSubmit(e)}>Sign Up</button>
     </form>
     </div>
     <div class="row" style={{height: '20vh'}}></div>

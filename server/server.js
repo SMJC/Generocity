@@ -28,7 +28,7 @@ io.on("connection", socket => {
     if(error) return callback(error);
 
     socket.join(user.room); // joins suer to room
-    socket.emit('message', {user: 'admin', text: `${user.name} has joined the room ${user.room}`})
+    socket.emit('message', {user: 'admin', text: `Hi, ${user.name} you are now chatting with ${user.room}!`})
     socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
   })
 
@@ -41,15 +41,7 @@ io.on("connection", socket => {
 
     callback();
   })
-  // socket.emit("your id", socket.id); // emits the 'your id' event to client, along with user's socket ID
-  //socket.client
-  // socket.join('some room');
-  // socket.on('room', (room) => {
-  //   socket.join(room)
-  // })
-  // socket.on("send message", body => { // when the client emits the 'send message' event, (i.e. when user sends msg), server emits the 'message' event
-  //   io.emit("message", body) // the client listens for the 'message' event, and appends the 'body' (sent from server) to the DOM
-  // })
+
   socket.on('disconnect', () => {
     console.log('socket disconnected')
     const user = removeUser(socket.id);
