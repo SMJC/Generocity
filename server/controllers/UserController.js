@@ -63,6 +63,23 @@ UserController.createUser = async (req, res, next) => {
   }
 };
 
+UserController.verifyUser = async (req, res, next) => {
+  const { email, password } = req.body;
+  try {
+    const findUser = `SELECT _id, email, password FROM users WHERE (email = '${email}');`;
+    const user = await db.query(findUser);
+    if (password === user.rows[0].password) {
+      return next();
+    }
+    if (password !== user.rows[0].password) {
+      return next({ log: 'Incorrect password' });
+    }
+  } catch (e) {
+    return next({ log: 'Error returned, invalid username' });
+  }
+};
+
+module.exports = UserController;
 //   // let {email, password, phone} = req.body
 //   console.log("req.body in create user", req.body);
 //   f (!username || pasowrd) return next (if username or
@@ -86,24 +103,18 @@ UserController.createUser = async (req, res, next) => {
 //   );
 //   };
 
-// UserController.verifyUser = (req, res, next) => {
-//   const { email, password } = req.body;
+// implement functionality that checks for lacking data fields
 
-//   // implement functionality that checks for lacking data fields
+// User.findOne({ email }, (err, user) => {
+//   // console.log("user in verifyUser", user);
+//   if (err) return next({ log: 'Error returned, invalid username' });
+//   if (user === null) return next({ log: 'Cannot find user from username' });
+//   /** ------------------*BCRPYT - not using yet, so need to add functionality that mathes req email/pw to db email/pw----------------- */
+//   // if valid username, check password
+//   user.comparePassword(password, (err, isMatch) => {
+//     if (err) return next({log: 'Error occured while matching password via bcrypt'});
+//     if (isMatch === false) return next({log: 'Incorrect password - bcrypt match failed'})
+//     return next();
 
-//   User.findOne({ email }, (err, user) => {
-//     // console.log("user in verifyUser", user);
-//     if (err) return next({ log: 'Error returned, invalid username' });
-//     if (user === null) return next({ log: 'Cannot find user from username' });
-//     /** ------------------*BCRPYT - not using yet, so need to add functionality that mathes req email/pw to db email/pw----------------- */
-//     // if valid username, check password
-//     // user.comparePassword(password, (err, isMatch) => {
-//     //   if (err) return next({log: 'Error occured while matching password via bcrypt'});
-//     //   if (isMatch === false) return next({log: 'Incorrect password - bcrypt match failed'})
-//     //   return next();
-
-//     // })
-//   });
-// };
-
-module.exports = UserController;
+//   // })
+// });

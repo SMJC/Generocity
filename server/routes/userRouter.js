@@ -24,14 +24,22 @@ router.post(
   }
 );
 
-// // handle login requests
-// router.post('/login',
-// UserController.verifyUser,
-// CookieController.setSSIDCookie,
-// SessionController.startSession,
-// (req, res) => {
-//   return res.status(200).json({isLoggedIn: true})
-// })
+// handle login requests
+router.post(
+  '/login',
+  UserController.verifyUser,
+  CookieController.setSSIDCookie,
+  SessionController.startSession,
+  (req, res) => {
+    return res.status(200).json({ isLoggedIn: true });
+  }
+);
+
+// check for session on componentDidMount
+router.get('/checksession', SessionController.isLoggedIn, (req, res) => {
+  // 200 response will provide client with user email
+  return res.status(200).json({ email: res.locals.email });
+});
 
 // // hanlde logout requests
 // // router.post('/:user_id/logout',
@@ -39,12 +47,5 @@ router.post(
 // //     (req, res) => {
 // //       return res.status(200).json({})
 // // })
-
-// // check for session on componentDidMount
-// router.get('/checksession',
-//   SessionController.isLoggedIn, (req, res) => {
-//     // 200 response will provide client with user email
-//     return res.status(200).json({email: res.locals.email});
-// })
 
 module.exports = router;
