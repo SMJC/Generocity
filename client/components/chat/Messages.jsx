@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import io from "socket.io-client";
 import '../../scss/app.scss';
 import Chat from './Chat.jsx'
@@ -48,6 +48,7 @@ const Messages = (props) => {
           {/* chat area */}
         <div className="col-9 chatContainer">
           {/*  need to make a POST request to create a new chatroom? */}
+          
           <Chat currentRoom={currentRoom} userEmail={props.userEmail}/>
         </div>
 

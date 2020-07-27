@@ -11,6 +11,7 @@ const Chat = (props) => {
   const [message, setMessage] = useState("");
   const [room, setRoom] = useState('')
   const ENDPOINT = 'localhost:3000'
+  const name = props.userEmail;
 
 
   useEffect(() => { // on join
@@ -30,9 +31,10 @@ const Chat = (props) => {
 
   useEffect(() => {
     socket.on('message', (message) => {
+      console.log('message received on client', message)
       setMessages([...messages, message]) // message has a suer on it
     })
-    console.log(messages)
+    
   }, [messages])
 
   // fn for sending mssgs  
@@ -80,8 +82,12 @@ const Chat = (props) => {
     <div className="container chatContainer">
   <div className="row chatRow" style={{height: '45vh', width: '100%'}}></div>
         {messages.map((message, index) => { 
+          console.log('message.user:', message.user)
+          console.log('name', name)
+
           //</div>if you are the sender, render your message
           if (message.user === name) {
+            // console.log('message.user', message.name)
             return (
               <div className="row" key={index} style={{width: '100%', display: 'flex', justifyContent: 'flex-end', margin: '0px'}}>
                 <p>
