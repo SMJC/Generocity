@@ -80,17 +80,16 @@ class App extends Component {
 
   handleFilterChange(e) {
     e.preventDefault();
-
-    const url = '/item/category/';
-    fetch(path.resolve(url, e.target.value))
-      .then((res) => res.text())
+    const categoryName = e.target.value;
+    const url = '/filter/category/';
+    fetch(path.resolve(url, categoryName))
+      .then((res) => res.json())
       .then((res) => {
         console.log('res', res);
-        // res is currently in HTML. Check routing.
-        // this.setState({ allItems: res.items });
+        this.setState({ allItems: res.items });
       })
       .catch((err) => {
-        console.log('/item/category GET error: ', err);
+        console.log('/filter/category GET error: ', err);
       });
   }
 
@@ -165,7 +164,6 @@ class App extends Component {
       userLastName,
       password,
       userEmail,
-      userStreet,
       userStreet2,
       userState,
       userCity,
@@ -176,7 +174,6 @@ class App extends Component {
       userLastName,
       password,
       userEmail,
-      userStreet,
       userStreet2,
       userState,
       userCity,
@@ -303,7 +300,6 @@ class App extends Component {
                   name="itemCategory"
                   onChange={(e) => {
                     this.handleFilterChange(e);
-                    console.log('Category: ', e.target.value);
                   }}
                 >
                   <option>Category</option>
