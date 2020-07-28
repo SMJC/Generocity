@@ -175,10 +175,10 @@ class Profile extends Component {
                 />
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                <button type="button" class="btn btn-secondary loginAndSignUpBtn" data-dismiss="modal">
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>
+                <button type="submit" class="btn btn-primary loginAndSignUpBtn" onClick={(e) => this.handleSubmit(e)}>
                   Edit Item
                 </button>
               </div>
