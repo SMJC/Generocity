@@ -127,6 +127,8 @@ class App extends Component {
       });
   }
 
+  // FROM SERVER
+  // const { email, password } = req.body;
   /*--- POST request to /LOG-IN---- */
   handleLoginSubmit(e) {
     e.preventDefault();
@@ -134,24 +136,24 @@ class App extends Component {
     const { userEmail, password } = this.state;
     const body = { userEmail, password };
 
-    // fetch('/log-in', {
-    //   method: 'POST',
-    //   headers: {
-    //     "Content-Type": "Application/JSON"
-    //   },
-    //   body: JSON.stringify(body)
-    // })
-    // .then(res => {
-    //   console.log("res in /log-in", res);
-    //   res.json();
+    fetch('/log-in', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "Application/JSON"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(res => {
+        console.log("res in /log-in", res);
+        res.json();
 
-    //   this.setState({isLoggedIn: true, password: ''})
-    //   this.props.history.push('/')
-    // })
-    // .catch(err => {
-    //   console.log('/LOG-IN Post error: ', err);
-    //   this.setState({userEmail: '', password: ''})
-    // });
+        this.setState({ isLoggedIn: true, password: '' })
+        this.props.history.push('/')
+      })
+      .catch(err => {
+        console.log('/LOG-IN Post error: ', err);
+        this.setState({ userEmail: '', password: '' })
+      });
   }
 
   /*----------------POST request To SIGNUP-------------------*/
@@ -163,43 +165,45 @@ class App extends Component {
       userLastName,
       password,
       userEmail,
-      userStreet2,
+      userStreet,
       userState,
       userCity,
       userZip,
     } = this.state;
     const body = {
-      userFirstName,
-      userLastName,
+      email: userEmail,
       password,
-      userEmail,
-      userStreet2,
-      userState,
-      userCity,
-      userZip,
+      firstName: userFirstName,
+      lastName: userLastName,
+      zipCode: userZip,
+      street: userStreet,
+      city: userCity,
+      state: userState,
     };
+
     console.log('submit signUp req body:', body);
     // make POST request to server
 
-    // fetch('/sign-up', {
-    //   method: 'POST',
-    //   headers: {
-    //     "Content-Type": "Application/JSON"
-    //   },
-    //   body: JSON.stringify(body)
-    // })
-    // .then(res => {
-    //   console.log("res in signUp", res);
-    //   res.json();
-    //   // TODO: setState with isLoggedIn, clear pw
-    //   // return to home page
-    //   this.props.history.push('/')
-    // })
-    // .catch(err => {
-    //   console.log('AddItem Post error: ', err);
-    //   // todo - clear all fields with setState
-    //   this.setState({})
-    // });
+    fetch('/user/signup', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "Application/JSON"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(res => res.json())
+      // TODO: setState with isLoggedIn, clear pw
+      // return to home page
+      .then(res => {
+        console.log('res', res);
+        this.props.history.push('/')
+        // this.setState({})
+      })
+      .catch(err => {
+        console.log('AddItem Post error: ', err);
+        // todo - clear all fields with setState
+        this.setState({})
+      });
   }
 
   // ---------------------check session - called in componentDidMount------------------------------------
