@@ -12,75 +12,46 @@ const Chat = (props) => {
   const [message, setMessage] = useState("");
   // const [room, setRoom] = useState('')
   const ENDPOINT = 'localhost:3000'
-  const name = props.userEmail;
-  const room = props.currentRoom;
+  const name = props.userEmail; // should change this to userFirstName
+  const room = props.currentRoom; // default rooom passed down from App, all others from Messages
 
 
 
-  useEffect(() => { // on join
-    // const room = props.currentRoom;
-    const name = props.userEmail;
+  useEffect(() => { 
+    // const name = props.userEmail;
     socket = io(ENDPOINT)
     console.log('newROOM joined');
-    socket.emit('join', { name, room }, ({error}) => {
+    // upon connection to socket.io, emit 'join' event to server
+    socket.emit('join', { name, room }, ({error}) => { 
       console.log('error')
     })
-
+ // on disconnectioning from socket or leaving the current room
     return () => {
-      socket.emit('disconnect')
-      socket.off();
-      setMessages([]);
+      socket.emit('disconnect') // emit 'disconnect' event
+      socket.off(); // turn socket off
+      // clear messages in state - had to do this to force the app to clear the messages displays
+      setMessages([]); 
     }
   }, [ENDPOINT, props.currentRoom]);
 
   useEffect(() => {
+    // listen for 'message' event from server
     socket.on('message', (message) => {
       console.log('message received on client', message)
-      setMessages([...messages, message]) // message has a suer on it
-    })
-    
+      // update messages state
+      setMessages([...messages, message]) // *message is an object with 'user' and 'text' props
+    }) 
   }, [messages])
 
-  // fn for sending mssgs  
-  //   socketRef.current = io.connect('/'); // connects client to server on mount
-  //   // socketRef.on('connect', (room) => {
-  //   //   socketRef.emit('room', room) // need to add room event listener in server.js
-  //   // })
-  //   socketRef.current.on("your id", id => {
-  //     setYourID(id); // server emits the 'your id' event and sends along an ID
-  //   })
-    
-  //   socketRef.current.on("message", (message) => {
-   
-  //     receiveMessage(message);
-  //   })
-  // }, []);
-
-  // function receiveMessage(message) {
-  //   setMessages((pastMessages) => [...pastMessages, message]);
-  // }
-
-  // function sendMessage(e) { // sends ID and body to server
-  //   e.preventDefault();
-  //   const messageObject = {
-  //     body: message, // variables from state
-  //     id: yourID, // variables from state
-  //   };
-  //   setMessage(""); // clear state 
-  //   socketRef.current.emit("send message", messageObject);
-  // }
-  const sendMessage = (event) => {
+  const sendMessage = event => { // onClick event of 'Send Message' button
     event.preventDefault();
-    console.log('message in sendmsd', message)
-    //    const messageObject = {
-    //   body: message, // variables from state
-    //   id: yourID, // variables from state
-    // };
+    console.log('message in sendmsg', message)
     socket.emit('sendMessage', message, () => setMessage(''))
   }
-  function handleChange(e) {
-    setMessage(e.target.value);
-  }
+
+  // track text input in state
+  const handleChange = e => setMessage(e.target.value);
+  
 
   return (
     <div className="container chatContainer">
@@ -89,7 +60,7 @@ const Chat = (props) => {
           console.log('message.user:', message.user)
           console.log('name', name)
 
-          //</div>if you are the sender, render your message
+          //if you are the sender, render your message
           if (message.user === name) {
             // console.log('message.user', message.name)
             return (
