@@ -20,7 +20,7 @@ router.post(
   CookieController.setSSIDCookie,
   SessionController.startSession,
   (req, res, next) => {
-    return res.status(200).json({ isLoggedIn: true });
+    return res.status(200).json({ id: res.locals.ssid });
   }
 );
 
