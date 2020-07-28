@@ -19,7 +19,7 @@ class App extends Component {
       // store most state in App component, make available to child components as props
       isloggedIn: false,
       allItems: [], // (each item is an object)
-      userEmail: 'test@email.com',
+      userEmail: 'Wonderpuss Photogenicus',
       userPoints: '',
       userFirstName: 'Dave',
       userLastName: "O'Sullivan",
@@ -29,7 +29,7 @@ class App extends Component {
       userCity: '',
       userState: '',
       userZip: '',
-      userMessages: ['messager1', 'messager2'],
+      msgRooms: ['Bridget', 'Scott'],
       //  item state
       itemTitle: '',
       itemDescription: '',
@@ -61,10 +61,10 @@ class App extends Component {
   // it also needs to redirect to Messages component
   handleSendMessage(e) {
     e.preventDefault();
-    const newUserMessages = [...this.state.userMessages];
-    newUserMessages.push(e.target.value);
-    this.setState({ userMessages: newUserMessages });
-    this.props.history.push('/messages');
+    const newUserMessages = [...this.state.msgRooms];
+    newUserMessages.push(`Owner of ${e.target.value}`);
+    this.setState({ msgRooms: newUserMessages })
+    this.props.history.push('/messages')
   }
   /*----------- handle file change (image input) -----------------*/
 
@@ -253,8 +253,8 @@ class App extends Component {
       <div className="backgroundColor" style={{ backgroundColor: '#FDFDFD' }}>
         <nav class="navbar navbar-expand-md navbar-light" style={{ backgroundColor: '#e4f3fe' }}>
           <NavLink to="/" className="nav-brand">
-            <a className="navbar-brand" href="#">
-              generocity
+            <a className="navbar-brand" href="#" style={{ letterSpacing: '2px' }}>
+              genero<span style={{ color: 'gray', letterSpacing: '3px' }}>city</span>
             </a>
           </NavLink>
           <button
@@ -271,20 +271,16 @@ class App extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
+
               <li className="nav-item active">
-                <NavLink to="/chat" className="nav-link">
-                  Chat
-                </NavLink>
-              </li>
-              <li className="nav-item active">
-                <NavLink to="/messages" className="nav-link">
-                  Messages
+                <NavLink to="/profile" className="nav-link">
+                  Profile
                 </NavLink>
               </li>
               <li className="nav-item">
                 {/* <a class="nav-link" href="#">Link</a> */}
-                <NavLink to="/profile" className="nav-link">
-                  Profile
+                <NavLink to="/messages" className="nav-link">
+                  Messages
                 </NavLink>
               </li>
               {/* <li className="nav-item dropdown">
@@ -428,7 +424,13 @@ class App extends Component {
           <Route
             exact
             path="/messages"
-            render={(props) => <Messages {...props} userMessages={this.state.userMessages} />}
+            render={(props) => (
+              <Messages
+                {...props}
+                msgRooms={this.state.msgRooms}
+                userEmail={this.state.userEmail}
+              />
+            )}
           />
         </Switch>
       </div>

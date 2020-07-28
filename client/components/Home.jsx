@@ -39,6 +39,7 @@ class Home extends Component {
     // define *map method to transform allItems into char cards
     const cards = allItems.map((item) => {
       return (
+        <div className="card">
           <ItemCard
             item={item}
             // name={item.itemTitle}
@@ -48,6 +49,7 @@ class Home extends Component {
             sendMessageButton={this.props.sendMessage}
             inProfile={false}
           />
+        </div>
       );
     });
     // if (this.state.redirect) {

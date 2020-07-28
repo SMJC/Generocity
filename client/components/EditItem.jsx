@@ -14,7 +14,7 @@ class EditItem extends Component {
         {/* item details input */}
         <form>
           {/** ------- Item Title -------- */}
-          <div className="form-group row">
+          <div className="form-group row loginAndSignUp">
             <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg">
               Item Title
             </label>
