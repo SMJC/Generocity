@@ -11,9 +11,9 @@ ItemsController.getAllItems = (req, res, next) => {
     }
     // if successful, query will return data.rows
     const { rows } = data;
-    console.log('rows', rows);
+    // console.log('rows', rows);
     res.locals.items = rows;
-    console.log(`Successfully made GET request for all items in database.`);
+    // console.log(`Successfully made GET request for all items in database.`);
     return next();
   });
 };

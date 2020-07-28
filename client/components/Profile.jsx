@@ -93,7 +93,7 @@ class Profile extends Component {
     const cards = userItems.map((item) => {
       return (
         <>
-          <section className="card-deck">
+          <section className="card">
             <ItemCard
               item={item}
               inProfile={true}
@@ -145,10 +145,10 @@ class Profile extends Component {
                 />
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                <button type="button" class="btn btn-secondary loginAndSignUpBtn" data-dismiss="modal">
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>
+                <button type="submit" class="btn btn-primary loginAndSignUpBtn" onClick={(e) => this.handleSubmit(e)}>
                   Edit Item
                 </button>
               </div>
@@ -158,7 +158,7 @@ class Profile extends Component {
 
         <section className="userProfile">
           <h4>Welcome to Your Profile, {this.props.userFirstName}!</h4>
-          <p>Name: {this.props.userFirstName} {this.props.userLastName}< br/>
+          <p>Name: {this.props.userFirstName} {this.props.userLastName}< br />
           User Email: {this.props.userEmail}</p>
           <h5>Your listed items:</h5>
         </section>
