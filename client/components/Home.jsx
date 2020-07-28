@@ -12,50 +12,23 @@ class Home extends Component {
     // tracks AddItem values
   }
 
-  /*------TODO-----*/
-
-  // define method to handle user input
-  // tracks input for login/signup forms - assign input field a 'name' attribute that corresponds to state prop
-  // handleChange(e) {
-  //   // add as onchange method
-  //   this.setState({ [e.target.name]: e.target.value });
-  // }
-  // define method to send input to DB upon submission
-  /*------SUBMIT IMAGE UPLOAD-----*/
-
-  // handleFileChange(e) {
-  //   console.log('input Image:', e.target.value);
-  //   this.setState({
-  //     itemImage:
-  //       e.target
-  //         .value /**URL.createObjectURL(e.target.files[0]) is probably only for displaying a temp image */,
-  //   });
-  // }
 
   render() {
     const { allItems } = this.props; // provides this.state.allItems as an array
-    console.log(allItems);
-    console.log(this.props.sendMessage);
-    // define *map method to transform allItems into char cards
+
+    // use map method to transform allItems into cards
     const cards = allItems.map((item) => {
       return (
         <div className="card">
           <ItemCard
             item={item}
-            // name={item.itemTitle}
-            // userid={item.itemUserId}
-            // location={item.itemAddress}
-            // status={item.itemStatus}
             sendMessageButton={this.props.sendMessage}
             inProfile={false}
           />
         </div>
       );
     });
-    // if (this.state.redirect) {
-    //   return <Redirect to={this.state.redirect} />
-    // }
-    // onChange, value of option is sent by event handler to update state
+
     return (
       <>
         <section className="innerNav">
@@ -72,7 +45,7 @@ class Home extends Component {
             </button>
           </section>
         </section>
-        {/* <!-- Modal --> */}
+        {/* <!!-- Modal Button - Display Content is in AddItem.jsx --!!> */}
         <div
           class="modal fade"
           id="addItemModal"

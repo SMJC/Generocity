@@ -121,7 +121,6 @@ h6 {
   border-radius: 15px;
   box-shadow: 1px 1px 5px rgba(22, 22, 22, 0.171);
 
-  // border
 }
 
 .loginAndSignUpBtn:hover {
@@ -141,16 +140,10 @@ h6 {
 }
 
 
-/* .form-group input {
-  width: 600px;
-}
-.form-group select {
-  width: 70%;
-} */
 
 /* ----------------Media Queries------------------ */
 /* TODO: */
-/* -add media query for grid */
+/* -add media query for smallest screen size */
 
 @media (max-width: 1550px) {
   .itemsContainer {

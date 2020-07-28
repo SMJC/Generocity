@@ -11,7 +11,7 @@ module.exports = {
     publicPath: '/dist/',
     proxy: {
       '/': 'http://localhost:3000/',
-      '/socket.io': {
+      '/socket.io': { // connection to socket.io
         target: 'http://localhost:3000',
         ws: true
     }

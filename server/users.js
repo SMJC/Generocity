@@ -1,3 +1,4 @@
+/*this file stores an array and methods that maintain message rooms, and the users in them*/ 
 const users = [];
 
 const addUser = ({id, name, room}) => {
@@ -9,6 +10,7 @@ const addUser = ({id, name, room}) => {
   return {user};
 }
 
+// to persist room connections, do we still need removeUser? idk
 const removeUser = (id) => {
   const index = users.findIndex((user) => user.id === id);
   if (index !== -1) return users.splice(index, 1)[0];

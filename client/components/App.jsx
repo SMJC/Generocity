@@ -9,7 +9,7 @@ import Profile from './Profile.jsx';
 import AddItem from './AddItem.jsx';
 import Chat from './chat/Chat.jsx';
 import Messages from './chat/Messages.jsx';
-import { Route, Switch, Redirect, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
       // store most state in App component, make available to child components as props
       isloggedIn: false,
       allItems: [], // (each item is an object)
-      userEmail: 'Wonderpuss Photogenicus',
+      userEmail: 'Dave',
       userPoints: '',
       userFirstName: 'Dave',
       userLastName: "O'Sullivan",
@@ -30,7 +30,7 @@ class App extends Component {
       userState: '',
       userZip: '',
       msgRooms: ['Bridget', 'Scott'],
-      //  item state
+      /* State for a single item */
       itemTitle: '',
       itemDescription: '',
       itemCategory: '',
@@ -51,14 +51,13 @@ class App extends Component {
   }
   componentDidMount() {
     this.getAllItems();
-    // this.checkSession();
+    // this.checkSession(); ---- session auth incomplete
   }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  /* Send a message to another user from ItemCard button */
-  // this needs a POST request to update both users' 'userMessages' prop in DB
-  // it also needs to redirect to Messages component
+  /*--------- Send a message to another user from ItemCard button ------*/
+  // somewhere (maybe here) we need a POST request to update both users' 'msgRooms' array in DB
   handleSendMessage(e) {
     e.preventDefault();
     const newUserMessages = [...this.state.msgRooms];
@@ -66,14 +65,14 @@ class App extends Component {
     this.setState({ msgRooms: newUserMessages })
     this.props.history.push('/messages')
   }
-  /*----------- handle file change (image input) -----------------*/
+  /*----------- handle file change (image input) (AddItem)-----------------*/
 
   handleFileChange(e) {
     console.log('input Image:', e.target.value);
     this.setState({
       itemImage:
         e.target
-          .value /**URL.createObjectURL(e.target.files[0]) is probably only for displaying a temp image */,
+          .value /**URL.createObjectURL(e.target.files[0]) to display image before submit (for file uploads, not URLs) */,
     });
   }
 
@@ -95,7 +94,7 @@ class App extends Component {
       });
   }
 
-  /*--- POST request to add item to server---- */
+  /*---- POST request to add item to server---- */
   handleSubmit(e) {
     e.preventDefault();
 
@@ -127,8 +126,7 @@ class App extends Component {
       });
   }
 
-  // FROM SERVER
-  // const { email, password } = req.body;
+ 
   /*--- POST request to /LOG-IN---- */
   handleLoginSubmit(e) {
     e.preventDefault();
@@ -182,7 +180,7 @@ class App extends Component {
     };
 
     console.log('submit signUp req body:', body);
-    // make POST request to server
+
 
     fetch('/user/signup', {
       method: 'POST',
@@ -206,7 +204,7 @@ class App extends Component {
       });
   }
 
-  // ---------------------check session - called in componentDidMount------------------------------------
+  // ---------------------check session - called in componentDidMount-------------------------
   // checkSession() {
   //   fetch('/api/checksession')
   //   .then(res => res.json())
@@ -223,9 +221,7 @@ class App extends Component {
   // }
 
   /*--- GET Request for All items--- */
-  getAllItems() {
-    // call in componentDidMount
-
+  getAllItems() { // call in componentDidMount
     fetch('/item/all')
       .then((res) => res.json())
       .then((res) => {
@@ -238,15 +234,6 @@ class App extends Component {
         console.log('/item/all GET error: ', err);
       });
   }
-
-  /*----------------To Do-------------------*/
-
-  // define method to fetch user data from DB
-  // define method to fetch all items from DB (for MVP, maybe items from any region will display until user logs in w location info)
-  // define method to handle user input (for login and sign up)
-  // define method to handle login submit
-  // define method to handle sign up submit
-  // bind these methods to constructor, pass them down to children
 
   render() {
     return (
@@ -278,42 +265,17 @@ class App extends Component {
                 </NavLink>
               </li>
               <li className="nav-item">
-                {/* <a class="nav-link" href="#">Link</a> */}
                 <NavLink to="/messages" className="nav-link">
                   Messages
                 </NavLink>
               </li>
-              {/* <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                  <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </div>
-              </li> */}
+  
               <div id="filterBox">
                 <select
                   className="form-control"
                   id="exampleFormControlSelect1"
                   name="itemCategory"
-                  onChange={(e) => {
+                  onChange={e => {
                     this.handleFilterChange(e);
                   }}
                 >
