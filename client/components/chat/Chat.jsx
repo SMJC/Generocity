@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import io from "socket.io-client";
 import '../../scss/app.scss';
 
 
@@ -14,8 +13,6 @@ const Chat = (props) => {
   const ENDPOINT = 'localhost:3000'
   const name = props.userEmail; // should change this to userFirstName
   const room = props.currentRoom; // default rooom passed down from App, all others from Messages
-
-
 
   useEffect(() => { 
     // const name = props.userEmail;
