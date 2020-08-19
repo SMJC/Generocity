@@ -1,1 +1,1 @@
-# scratch-project
+# Generocity
