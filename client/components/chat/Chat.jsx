@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../scss/app.scss';
 
 let socket;
@@ -59,7 +59,6 @@ const Chat = ({ currentRoom, userEmail }) => {
 
         // if you are the sender, render your message
         if (message.user === name) {
-          // console.log('message.user', message.name)
           return (
             <div
               key={index}
