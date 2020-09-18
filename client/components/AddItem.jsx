@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class AddItem extends Component {
-
   render() {
     return (
       <div>
@@ -10,43 +9,43 @@ class AddItem extends Component {
         <form>
           {/** ------- Item Title -------- */}
           <div className="form-group row">
-            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg">
+            <label className="col-sm-2 col-form-label col-form-label-lg" htmlFor="colFormLabelLg">
               Item Name
             </label>
             <div className="col-sm-10">
               <input
-                type="email"
                 className="form-control form-control-lg"
                 id="colFormLabelLg"
-                placeholder="Enter Item Name"
                 name="itemTitle"
+                placeholder="Enter Item Name"
+                type="email"
                 onChange={(e) => this.props.handleChange(e)}
-              ></input>
+              />
             </div>
           </div>
           {/** ------- Item Description -------- */}
           <div className="form-group row">
-            <label htmlFor="colFormLabel" className="col-sm-2 col-form-label">
+            <label className="col-sm-2 col-form-label" htmlFor="colFormLabel">
               Description
             </label>
             <div className="col-sm-10">
               <input
-                type="email"
+                x
                 className="form-control"
                 id="colFormLabel"
-                placeholder="Enter Item Description"
                 name="itemDescription"
-                x
+                placeholder="Enter Item Description"
+                type="email"
                 onChange={(e) => this.props.handleChange(e)}
-              ></input>
+              />
             </div>
           </div>
           {/** ------- Category -------- */}
 
           <div className="form-group row">
             <label
-              htmlFor="exampleFormControlSelect1"
               className="col-sm-2 col-form-label col-form-label-md"
+              htmlFor="exampleFormControlSelect1"
             >
               Category
             </label>
@@ -88,13 +87,13 @@ class AddItem extends Component {
           <div className="input-group mb-3">
             <div className="custom-file">
               <input
-                type="text"
                 className="form-control form-control-lg"
                 id="colFormLabelLg"
-                placeholder="Image Here"
                 name="itemImage"
+                placeholder="Image Here"
+                type="text"
                 onChange={(e) => this.props.handleFileChange(e)}
-              ></input>
+              />
               {/* <input
                 type="text"
                 className="custom-file-input"
@@ -117,7 +116,7 @@ class AddItem extends Component {
             </div>
           </div>
         </form>
-        {/*end component div*/}
+        {/* end component div */}
       </div>
     );
   }
