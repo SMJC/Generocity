@@ -115,11 +115,11 @@ npm run dev
 ## Usage
 
 Local items are displayed on the landing page.   
-|![Default Filepath](./assets/landing-ss.png)|
+![Default Filepath](./assets/landing-ss.png)
  <br />
 If you're interested in an item, message (beta) the item's owner.<br />
 If you'd like to give an item, sign up for a free account.<br />
- |![Default Filepath](./assets/signup-ss.png)|
+ ![Default Filepath](./assets/signup-ss.png)
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
