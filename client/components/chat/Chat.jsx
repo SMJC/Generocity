@@ -10,7 +10,7 @@ const Chat = ({ currentRoom, userEmail }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   // const [room, setRoom] = useState('')
-  const ENDPOINT = 'localhost:3000';
+  const ENDPOINT = 'localhost:4000';
   const name = userEmail; // should change this to userFirstName
   const room = currentRoom; // default rooom passed down from App, all others from Messages
 
@@ -54,7 +54,7 @@ const Chat = ({ currentRoom, userEmail }) => {
     <div className="container chatContainer">
       <div className="row chatRow" style={{ height: '45vh', width: '100%' }} />
       {messages.map((message, index) => {
-        console.log('message.user:', message.user);
+        console.log('message.name:', message.user);
         console.log('name', name);
 
         // if you are the sender, render your message

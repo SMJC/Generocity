@@ -34,7 +34,7 @@ const Messages = (props) => {
               type="button"
               value="no one"
             >
-              Choose someone:
+      
             </button>
 
             {listOfRooms}

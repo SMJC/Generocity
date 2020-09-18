@@ -10,9 +10,9 @@ module.exports = {
   devServer: {
     publicPath: '/dist/',
     proxy: {
-      '/': 'http://localhost:3000/',
+      '/': 'http://localhost:4000/',
       '/socket.io': { // connection to socket.io
-        target: 'http://localhost:3000',
+        target: 'http://localhost:4000',
         ws: true
     }
     },
