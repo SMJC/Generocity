@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-const path = require('path');
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../scss/app.scss';
+import { Route, Switch, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import SignUp from './SignUp.jsx';
 import Login from './Login.jsx';
 import Home from './Home.jsx';
@@ -9,8 +10,8 @@ import Profile from './Profile.jsx';
 import AddItem from './AddItem.jsx';
 import Chat from './chat/Chat.jsx';
 import Messages from './chat/Messages.jsx';
-import { Route, Switch, NavLink } from 'react-router-dom';
-import { withRouter } from 'react-router';
+
+const path = require('path');
 
 class App extends Component {
   constructor(props) {
@@ -49,40 +50,45 @@ class App extends Component {
     this.handleFileChange = this.handleFileChange.bind(this);
     // this.checkSession = this.checkSession.bind(this);
   }
+
   componentDidMount() {
     this.getAllItems();
     // this.checkSession(); ---- session auth incomplete
   }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-  /*--------- Send a message to another user from ItemCard button ------*/
+
+  /* --------- Send a message to another user from ItemCard button ------*/
   // somewhere (maybe here) we need a POST request to update both users' 'msgRooms' array in DB
   handleSendMessage(e) {
     e.preventDefault();
     const newUserMessages = [...this.state.msgRooms];
     newUserMessages.push(`Owner of ${e.target.value}`);
-    this.setState({ msgRooms: newUserMessages })
-    this.props.history.push('/messages')
+    this.setState({ msgRooms: newUserMessages });
+    this.props.history.push('/messages');
   }
-  /*----------- handle file change (image input) (AddItem)-----------------*/
+  /* ----------- handle file change (image input) (AddItem)-----------------*/
 
   handleFileChange(e) {
     console.log('input Image:', e.target.value);
     this.setState({
       itemImage:
         e.target
-          .value /**URL.createObjectURL(e.target.files[0]) to display image before submit (for file uploads, not URLs) */,
+          .value /** URL.createObjectURL(e.target.files[0]) to display image before submit (for file uploads, not URLs) */,
     });
   }
 
-  /*--- GET request to retrieve item filter by category---- */
+  /* --- GET request to retrieve item filter by category---- */
 
   handleFilterChange(e) {
     e.preventDefault();
     const categoryName = e.target.value;
     const url = '/filter/category/';
-    if (!categoryName) { this.getAllItems() }
+    if (!categoryName) {
+      this.getAllItems();
+    }
     fetch(path.resolve(url, categoryName))
       .then((res) => res.json())
       .then((res) => {
@@ -94,7 +100,7 @@ class App extends Component {
       });
   }
 
-  /*---- POST request to add item to server---- */
+  /* ---- POST request to add item to server---- */
   handleSubmit(e) {
     e.preventDefault();
 
@@ -126,8 +132,7 @@ class App extends Component {
       });
   }
 
- 
-  /*--- POST request to /LOG-IN---- */
+  /* --- POST request to /LOG-IN---- */
   handleLoginSubmit(e) {
     e.preventDefault();
 
@@ -137,24 +142,24 @@ class App extends Component {
     fetch('/log-in', {
       method: 'POST',
       headers: {
-        "Content-Type": "Application/JSON"
+        'Content-Type': 'Application/JSON',
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     })
-      .then(res => {
-        console.log("res in /log-in", res);
+      .then((res) => {
+        console.log('res in /log-in', res);
         res.json();
 
-        this.setState({ isLoggedIn: true, password: '' })
-        this.props.history.push('/')
+        this.setState({ isLoggedIn: true, password: '' });
+        this.props.history.push('/');
       })
-      .catch(err => {
+      .catch((err) => {
         console.log('/LOG-IN Post error: ', err);
-        this.setState({ userEmail: '', password: '' })
+        this.setState({ userEmail: '', password: '' });
       });
   }
 
-  /*----------------POST request To SIGNUP-------------------*/
+  /* ----------------POST request To SIGNUP-------------------*/
   handleSignUpSubmit(e) {
     e.preventDefault();
 
@@ -181,26 +186,25 @@ class App extends Component {
 
     console.log('submit signUp req body:', body);
 
-
     fetch('/user/signup', {
       method: 'POST',
       headers: {
-        "Content-Type": "Application/JSON"
+        'Content-Type': 'Application/JSON',
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       // TODO: setState with isLoggedIn, clear pw
       // return to home page
-      .then(res => {
+      .then((res) => {
         console.log('res', res);
-        this.props.history.push('/')
+        this.props.history.push('/');
         // this.setState({})
       })
-      .catch(err => {
+      .catch((err) => {
         console.log('AddItem Post error: ', err);
         // todo - clear all fields with setState
-        this.setState({})
+        this.setState({});
       });
   }
 
@@ -220,8 +224,9 @@ class App extends Component {
   //   })
   // }
 
-  /*--- GET Request for All items--- */
-  getAllItems() { // call in componentDidMount
+  /* --- GET Request for All items--- */
+  getAllItems() {
+    // call in componentDidMount
     fetch('/item/all')
       .then((res) => res.json())
       .then((res) => {
@@ -238,44 +243,46 @@ class App extends Component {
   render() {
     return (
       <div className="backgroundColor" style={{ backgroundColor: '#FDFDFD' }}>
-        <nav class="navbar navbar-expand-md navbar-light" style={{ backgroundColor: '#e4f3fe' }}>
-          <NavLink to="/" className="nav-brand">
+        <nav
+          className="navbar navbar-expand-md navbar-light"
+          style={{ backgroundColor: '#e4f3fe' }}
+        >
+          <NavLink className="nav-brand" to="/">
             <a className="navbar-brand" href="#" style={{ letterSpacing: '2px' }}>
               genero<span style={{ color: 'gray', letterSpacing: '3px' }}>city</span>
             </a>
           </NavLink>
           <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            className="navbar-toggler"
+            data-target="#navbarSupportedContent"
+            data-toggle="collapse"
+            type="button"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon" />
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-
               <li className="nav-item active">
-                <NavLink to="/profile" className="nav-link">
+                <NavLink className="nav-link" to="/profile">
                   Profile
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/messages" className="nav-link">
+                <NavLink className="nav-link" to="/messages">
                   Messages
                 </NavLink>
               </li>
-  
+
               <div id="filterBox">
                 <select
                   className="form-control"
                   id="exampleFormControlSelect1"
                   name="itemCategory"
-                  onChange={e => {
+                  onChange={(e) => {
                     this.handleFilterChange(e);
                   }}
                 >
@@ -292,12 +299,12 @@ class App extends Component {
             </ul>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <NavLink to="/login" className="nav-link" style={{ marginRight: '10px' }}>
+                <NavLink className="nav-link" style={{ marginRight: '10px' }} to="/login">
                   Login
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/signup" className="nav-link">
+                <NavLink className="nav-link" to="/signup">
                   Sign Up
                 </NavLink>
               </li>
@@ -313,15 +320,15 @@ class App extends Component {
               <Home
                 {...props}
                 allItems={this.state.allItems}
-                userItems={this.state.userItems}
-                userEmail={this.state.userEmail}
-                userAddress={this.state.userAddress}
-                userId={this.state.user_id}
-                sendMessage={this.handleSendMessage}
-                handleSubmit={this.handleSubmit}
-                handleFileChange={this.handleFileChange}
                 handleChange={this.handleChange}
+                handleFileChange={this.handleFileChange}
                 handleFilterChange={this.handleFilterChange}
+                handleSubmit={this.handleSubmit}
+                sendMessage={this.handleSendMessage}
+                userAddress={this.state.userAddress}
+                userEmail={this.state.userEmail}
+                userId={this.state.user_id}
+                userItems={this.state.userItems}
               />
             )}
           />
@@ -340,8 +347,8 @@ class App extends Component {
             render={(props) => (
               <Login
                 {...props} // add props here
-                handleLoginSubmit={this.handleLoginSubmit}
                 handleChange={this.handleChange}
+                handleLoginSubmit={this.handleLoginSubmit}
               />
             )}
           />
@@ -363,9 +370,9 @@ class App extends Component {
               <Profile
                 {...props}
                 allItems={this.state.allItems}
-                userId={this.state.user_id}
                 userEmail={this.state.userEmail}
                 userFirstName={this.state.userFirstName}
+                userId={this.state.user_id}
                 userLastName={this.state.userLastName}
               />
             )}
