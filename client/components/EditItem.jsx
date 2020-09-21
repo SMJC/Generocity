@@ -15,42 +15,42 @@ class EditItem extends Component {
         <form>
           {/** ------- Item Title -------- */}
           <div className="form-group row loginAndSignUp">
-            <label htmlFor="colFormLabelLg" className="col-sm-2 col-form-label col-form-label-lg">
+            <label className="col-sm-2 col-form-label col-form-label-lg" htmlFor="colFormLabelLg">
               Item Title
             </label>
             <div className="col-sm-10">
               <input
-                type="email"
                 className="form-control form-control-lg"
                 id="colFormLabelLg"
-                placeholder="Change Title"
                 name="itemTitle"
+                placeholder="Change Title"
+                type="email"
                 onChange={(e) => this.props.handleChange(e)}
-              ></input>
+              />
             </div>
           </div>
           {/** ------- Item Description -------- */}
           <div className="form-group row">
-            <label htmlFor="colFormLabel" className="col-sm-2 col-form-label">
+            <label className="col-sm-2 col-form-label" htmlFor="colFormLabel">
               Description
             </label>
             <div className="col-sm-10">
               <input
-                type="email"
                 className="form-control"
                 id="colFormLabel"
-                placeholder="Revise Item Description"
                 name="itemDescription"
+                placeholder="Revise Item Description"
+                type="email"
                 onChange={(e) => this.props.handleChange(e)}
-              ></input>
+              />
             </div>
           </div>
           {/** ------- Category -------- */}
 
           <div className="form-group row">
             <label
-              htmlFor="exampleFormControlSelect1"
               className="col-sm-2 col-form-label col-form-label-md"
+              htmlFor="exampleFormControlSelect1"
             >
               Category
             </label>
@@ -71,18 +71,18 @@ class EditItem extends Component {
           </div>
           {/** ------- Pickup Address -------- */}
           <div className="form-group row">
-            <label htmlFor="colFormLabelSm" className="col-sm-2 col-form-label col-form-label-md">
+            <label className="col-sm-2 col-form-label col-form-label-md" htmlFor="colFormLabelSm">
               Pickup address:{' '}
             </label>
             <div className="col-sm-10">
               <input
-                type="email"
                 className="form-control form-control-sm"
                 id="colFormLabelSm"
-                placeholder="Revise pickup address"
                 name="itemAddress"
+                placeholder="Revise pickup address"
+                type="email"
                 onChange={(e) => this.props.handleChange(e)}
-              ></input>
+              />
             </div>
           </div>
 
@@ -90,16 +90,16 @@ class EditItem extends Component {
           <div className="input-group mb-3">
             <div className="custom-file">
               <input
-                type="file"
                 className="custom-file-input"
                 id="inputGroupFile02"
                 name="itemImage"
+                type="file"
                 onChange={(e) => this.props.handleFileChange(e)}
-              ></input>
+              />
               <label
+                aria-describedby="inputGroupFileAddon02"
                 className="custom-file-label"
                 htmlFor="inputGroupFile02"
-                aria-describedby="inputGroupFileAddon02"
               >
                 Choose file
               </label>
@@ -111,7 +111,7 @@ class EditItem extends Component {
             </div>
           </div>
         </form>
-        {/*end component div*/}
+        {/* end component div */}
       </div>
     );
   }

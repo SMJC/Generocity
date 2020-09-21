@@ -1,45 +1,32 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
-import { withRouter } from 'react-router';
+
 import ItemCard from './ItemCard.jsx';
 import AddItem from './AddItem';
 import '../scss/app.scss';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    // tracks AddItem values
-  }
-
-
   render() {
     const { allItems } = this.props; // provides this.state.allItems as an array
 
     // use map method to transform allItems into cards
-    const cards = allItems.map((item) => {
-      return (
-        <div className="card">
-          <ItemCard
-            item={item}
-            sendMessageButton={this.props.sendMessage}
-            inProfile={false}
-          />
-        </div>
-      );
-    });
+    const cards = allItems.map((item) => (
+      <div className="card">
+        <ItemCard inProfile={false} item={item} sendMessageButton={this.props.sendMessage} />
+      </div>
+    ));
 
     return (
       <>
         <section className="innerNav">
-          <section className="leftNav"></section>
+          <section className="leftNav" />
           <section className="rightNav">
             {/* <!-- Button trigger modal --> */}
             <button
-              type="button"
-              class="btn btn-dark addItemBtn"
-              data-toggle="modal"
+              className="btn btn-dark addItemBtn"
               data-target="#addItemModal"
+              data-toggle="modal"
+              type="button"
             >
               Add Item
             </button>
@@ -47,38 +34,38 @@ class Home extends Component {
         </section>
         {/* <!!-- Modal Button - Display Content is in AddItem.jsx --!!> */}
         <div
-          class="modal fade"
-          id="addItemModal"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalScrollableTitle"
           aria-hidden="true"
+          aria-labelledby="exampleModalScrollableTitle"
+          className="modal fade"
+          id="addItemModal"
+          role="dialog"
+          tabIndex="-1"
         >
-          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">
+          <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalScrollableTitle">
                   Add an Item
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button aria-label="Close" className="close" data-dismiss="modal" type="button">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <AddItem
                   handleChange={this.props.handleChange}
-                  handleSubmit={this.props.handleSubmit}
                   handleFileChange={this.props.handleFileChange}
+                  handleSubmit={this.props.handleSubmit}
                 />
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              <div className="modal-footer">
+                <button className="btn btn-secondary" data-dismiss="modal" type="button">
                   Close
                 </button>
                 <button
-                  type="submit"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   data-dismiss="modal"
+                  type="submit"
                   onClick={(e) => this.props.handleSubmit(e)}
                 >
                   Add Item

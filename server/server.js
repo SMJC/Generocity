@@ -9,7 +9,7 @@ const socket = require('socket.io')
 require('dotenv').config();
 
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 const server = http.createServer(app);
 const io = socket(server);
 
@@ -20,22 +20,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 io.on("connection", socket => {
-  console.log('new socket connection!', socket.id)
+  console.log('new socket connection!, socket.id: ', socket.id)
   socket.on('join', ({ name, room }, callback) => {
     // name is user's name, room is the other user's name
-    const { error, user } = addUser({ id: socket.id, name, room });
+    const { error, name } = addUser({ id: socket.id, name, room });
 
     if (error) return callback(error);
 
-    socket.join(user.room); // joins suer to room
-    socket.emit('message', { user: 'admin', text: `Hi, ${user.name}, you are now chatting with ${user.room}!` })
-    socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
+    socket.join(user.room); // joins user to current room
+    // socket.emit('message', { user: 'admin', text: `Hi, ${user.name}, you are now chatting with ${user.room}!` })
+    // broadcast methods emits event to everyone EXCEPT the user
+    // socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
   })
 
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
-
-    io.to(user.room).emit('message', { user: user.name, text: message });
+    // emit the message to the room and the room only
+    io.to(user.room).emit('message', { user: user.user, text: message });
     // SEND ROOMDATA TO ROOM ON CONNECTION
     io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
 
@@ -47,14 +48,15 @@ io.on("connection", socket => {
     const user = removeUser(socket.id);
 
     if (user) {
-
-      io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
+        console.log('user disconencted!!!!!')
+      io.to(user.room).emit('message', { user: 'Admin', text: `${user.user} has left.` });
+      /* Room data event listener has not been defined in Chat!! */
       io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
     }
     ;
   })
 })
-// from client, send message to scoket when room is created
+
 
 // Handle Requests for Static Files
 app.use('/', express.static(path.resolve(__dirname, '../')));
