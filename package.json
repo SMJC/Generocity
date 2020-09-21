@@ -1,21 +1,21 @@
 {
-  "name": "scratch-project",
+  "name": "Generocity",
   "version": "1.0.0",
-  "description": "Community Trade",
+  "description": "Community platform for giving and receiving",
   "main": "webpack.config.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production nodemon server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open & nodemon server/server.js",
+    "dev": "export NODE_ENV=development && (webpack-dev-server --open --hotOnly & nodemon server/server.js)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/johnmadrigal/scratch-project.git"
+    "url": "git+https://github.com/SMJC/Generocity.git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
@@ -54,7 +54,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "bugs": {
-    "url": "https://github.com/johnmadrigal/scratch-project/issues"
+    "url": "https://github.com/SMJC/Generocity/issues"
   },
-  "homepage": "https://github.com/johnmadrigal/scratch-project#readme"
+  "homepage": "https://github.com/SMJC/Generocity/#readme"
 }

@@ -23,7 +23,7 @@ io.on("connection", socket => {
   console.log('new socket connection!, socket.id: ', socket.id)
   socket.on('join', ({ name, room }, callback) => {
     // name is user's name, room is the other user's name
-    const { error, name } = addUser({ id: socket.id, name, room });
+    const { error, user } = addUser({ id: socket.id, name, room });
 
     if (error) return callback(error);
 
