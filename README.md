@@ -30,10 +30,12 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <!-- <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a> -->
-
+ <p align="center">
+  <img
+    alt="path-19 logo"
+    src="./assets/logo.png"
+  />
+     </p>
   <h3 align="center">Generocity</h3>
 
   <p align="center">
