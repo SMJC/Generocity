@@ -36,7 +36,6 @@
     src="./assets/logo.png"
   />
      </p>
-  <h3 align="center">Generocity</h3>
 
   <p align="center">
     A platform for giving
