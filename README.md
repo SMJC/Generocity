@@ -30,11 +30,13 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <!-- <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a> -->
-
-  <h3 align="center">Generocity</h3>
+ <p align="center">
+  <img
+    alt="path-19 logo"
+    src="./assets/logo.png"
+    height="300"
+  />
+     </p>
 
   <p align="center">
     A platform for giving
@@ -56,9 +58,6 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  <!-- * [Prerequisites](#prerequisites) -->
   * [Installation](#installation)
 * [Usage](#usage)
 * [Roadmap](#roadmap)
@@ -74,12 +73,7 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
   Generocity was created to connect those who have with those who need. 
-<!-- ### Built With
 
-* [Reac](https://getbootstrap.com)
-* [Apollo](https://jquery.com)
-* [React Native](https://laravel.com)
- -->
 
 
 <!-- GETTING STARTED -->
@@ -115,13 +109,13 @@ npm run dev
 ## Usage
 
 Local items are displayed on the landing page.  
-![Default Filepath](./assets/landing-ss.png) 
- <br />
+![Default Filepath](./assets/landing-ss.png)      <br />
+ <br /> 
 If you're interested in an item, message (beta) the item's owner.<br />
- ![Default Filepath](./assets/messages-ss.png) 
+ ![Default Filepath](./assets/messages-ss.png)     <br />
  <br />
 If you'd like to give an item, sign up for a free account.<br />
- ![Default Filepath](./assets/signup-ss.png)
+ ![Default Filepath](./assets/signup-ss.png)     <br />
 <br />
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
